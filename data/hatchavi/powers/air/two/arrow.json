@@ -1,9 +1,0 @@
-{
-    "name": "Hunted",
-    "description": "Projectiles deal 75% more damage towards you.",
-    "type": "origins:modify_projectile_damage",
-    "modifier": {
-        "operation": "multiply_base",
-        "value": 0.75
-    }
-}

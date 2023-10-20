@@ -1,5 +1,0 @@
-ARR License
-
-Copyright (c) 2023 Avi
-
-This file/software is owned by Avi, under the ARR license (All Rights Reserved).

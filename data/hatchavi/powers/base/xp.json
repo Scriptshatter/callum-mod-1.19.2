@@ -1,8 +1,0 @@
-{
-    "type": "origins:modify_xp_gain",
-    "modifier": {
-        "operation": "multiply_base",
-        "value": 0.5
-    },
-    "hidden": true
-}
