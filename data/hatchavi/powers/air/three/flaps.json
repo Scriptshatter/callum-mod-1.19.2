@@ -1,0 +1,77 @@
+{
+    "name": "Flap",
+    "description": "Pressing space midair boosts you forwards, but uses up a charge. You have 7 flap charges in total; and they recharge on the ground.",
+    "type": "origins:multiple",
+    "resource": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 7,
+        "hud_render": {
+            "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+            "bar_index": 23
+        }
+    },
+    "rback": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "*:*_resource",
+            "change": 1
+        },
+        "interval": 10,
+        "condition": {
+            "type": "origins:on_block"
+        }
+    },
+    "flap": {
+        "type": "origins:active_self",
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:change_resource",
+                    "resource": "*:*_resource",
+                    "change": -1
+                },
+                {    
+                    "type": "origins:add_velocity",
+                    "y": 0.8,
+                    "z": 1.1,
+                    "space": "local",
+                    "client": true,
+                    "set": true
+                },
+                {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.ender_dragon.flap"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "particle minecraft:dust 0.61 0.6 0.54 3 ~ ~ ~ 0.8 0.4 0.8 0.01 45 normal"
+                }
+            ]
+        },
+        "cooldown": 1,
+        "hud_render": {
+            "should_render": false
+        },
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_resource",
+                    "comparison": ">=",
+                    "compare_to": 1
+                },
+                {      
+                    "type": "origins:fall_flying"
+                }
+            ]
+        },
+        "key": {
+            "key": "key.jump",
+            "continuous": false
+        }
+    }
+}

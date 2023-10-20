@@ -1,0 +1,63 @@
+{
+    "name": "Grounded",
+    "description": "You are much faster on the ground, however you aren't good in other areas. You swim slower, move through the air slower, and you take more fall damage.",
+    "type": "origins:multiple",
+    "poison": {
+        "type": "origins:effect_immunity",
+        "effects": [
+            "minecraft:poison",
+            "minecraft:hunger"
+        ]
+    },
+    "speed": {
+        "type": "origins:attribute",
+        "modifiers": [
+          {
+            "name": "Origin modifier",
+            "attribute": "generic.movement_speed",
+            "value": 0.15,
+            "operation": "multiply_base"
+          },
+          {
+            "name": "Origin modifier",
+            "attribute": "generic.max_health",
+            "value": -4,
+            "operation": "addition"
+          }]
+    },
+    "swim": {
+        "type": "origins:modify_swim_speed",
+        "modifier": {
+            "operation": "multiply_base",
+            "value": -0.33
+        }
+    },
+    "falldamage": {
+        "type": "origins:modify_damage_taken",
+        "modifier": {
+            "name": "More kinetic damage taken",
+            "value": 0.5,
+            "operation": "multiply_base"
+        },
+        "damage_condition": {
+            "type": "origins:or",
+            "conditions": [
+                {
+                "type": "origins:name",
+                "name": "fall"
+                },
+                {
+                "type": "origins:name",
+                "name": "flyIntoWall"
+                }
+            ]
+        }
+    },
+    "airspeed": {
+        "type": "origins:modify_air_speed",
+        "modifier": {
+            "operation": "multiply_base",
+            "value": -0.33
+        }
+    }
+}

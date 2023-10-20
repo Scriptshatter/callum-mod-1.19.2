@@ -1,0 +1,123 @@
+{
+    "name": "Pickup",
+    "description": "Right-clicking an entity while flying will pick it up. Landing on the ground or pressing primary will drop them.",
+    "type": "origins:multiple",
+    "pickup": {
+        "type": "origins:action_on_entity_use",
+        "bientity_action": {
+            "type": "origins:invert",
+            "action": {
+                "type": "origins:mount"
+            }
+        },
+        "action_result": "success",
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "inverted": true,
+                    "type": "origins:passenger",
+                    "comparison": ">=",
+                    "compare_to": 1
+                },
+                {      
+                    "type": "origins:fall_flying"
+                }
+            ]
+        }
+    },
+    "velocity": {
+        "type": "origins:action_on_entity_use",
+        "bientity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:actor_action",
+                    "action": {
+                        "type": "origins:add_velocity",
+                        "y": 0.9,
+                        "z": 0.7,
+                        "space": "local_horizontal_normalized",
+                        "client": true,
+                        "set": false
+                    }
+                },
+                {    
+                    "type": "origins:actor_action",
+                    "action": {
+                        "type": "origins:change_resource",
+                        "resource": "*:*_resource",
+                        "change": -1
+                    }
+                }
+            ]
+        },
+        "action_result": "success",
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "inverted": true,
+                    "type": "origins:passenger",
+                    "comparison": ">=",
+                    "compare_to": 1
+                },
+                {      
+                    "type": "origins:fall_flying"
+                },
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_resource",
+                    "comparison": "==",
+                    "compare_to": 1
+                }
+            ]
+        }
+    },
+    "resource": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 1,
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "land": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "*:*_resource",
+            "change": 1
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:on_block"
+        }
+    },
+    "drop": {
+        "type": "origins:active_self",
+        "entity_action": {
+            "type": "origins:passenger_action", 
+            "action": {
+              "type": "origins:dismount"
+            }
+        },
+        "cooldown": 1,
+        "hud_render": {
+            "should_render": false
+        },
+        "condition": {
+            "type": "origins:fall_flying"
+        }
+    },
+    "badges": [
+        {
+            "sprite": "origins:textures/gui/badge/active.png",
+            "text": "Active ability, use with %s."
+        },
+        {
+            "sprite": "origins:textures/gui/badge/star.png",
+            "text": "You also get a little boost upwards once you grab something! Evolving really strengthed your boost."
+        }
+    ]
+}

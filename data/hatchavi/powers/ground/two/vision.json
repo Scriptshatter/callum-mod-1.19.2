@@ -1,0 +1,17 @@
+{
+    "name": "Underground Eyes",
+    "description": "You have a bit of night vision.",
+    "type": "origins:night_vision",
+    "strength": 0.15,
+    "condition": {
+        "type": "origins:submerged_in",
+        "fluid": "minecraft:water",
+        "inverted": true
+    },
+    "badges": [
+        {
+          "sprite": "origins:textures/gui/badge/star.png",
+          "text": "Evolving increased the brightness."
+        }
+    ]
+}

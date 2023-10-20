@@ -1,0 +1,21 @@
+{
+	"powers": [
+		"hatchavi:air/three/flaps",
+		"hatchavi:air/three/elytra",
+		"hatchavi:air/three/grab",
+		"hatchavi:air/three/grab2",
+		"hatchavi:air/three/drop",
+		"hatchavi:air/three/stubby",
+		"hatchavi:air/three/arrow",
+		"hatchavi:air/three/color",
+		"hatchavi:air/three/scale",
+		"hatchavi:air/three/particles",
+		"hatchavi:air/fireworks"
+	],
+	"icon": "minecraft:feather",
+	"order": 10,
+	"impact": 3,
+	"name": "Wind Wyvern III",
+	"description": "Giant winged beasts, Wind Wyverns can pick up entities and travel long distances.",
+    "unchoosable": true
+}

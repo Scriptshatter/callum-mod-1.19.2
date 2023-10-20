@@ -1,0 +1,22 @@
+{
+    "name": "Water-Locked",
+    "description": "Due to your flippers, you walk even slower on land.",
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+        "attribute": "minecraft:generic.movement_speed",
+        "operation": "multiply_base",
+        "value": -0.15
+    },
+    "tick_rate": 1,
+    "condition": {
+        "type": "origins:in_block",
+        "block_condition": {
+            "type": "origins:fluid",
+            "fluid_condition": {
+                "type": "origins:in_tag",
+                "tag": "minecraft:water"
+            }					
+        },
+        "inverted": true
+    }
+}

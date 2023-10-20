@@ -1,0 +1,36 @@
+{
+    "type": "origins:multiple",
+    "projectile": {
+        "type": "origins:modify_projectile_damage",
+        "damage_condition": {
+            "type": "origins:projectile",
+            "projectile": "minecraft:trident"
+        },
+        "modifier": {
+            "operation": "multiply_base",
+            "value": 1.5
+        }
+    },
+    "hand": {
+        "type": "origins:modify_damage_taken",
+        "bientity_condition": {
+            "type": "origins:actor_condition",
+            "condition": {
+                "type": "origins:equipped_item",
+                "equipment_slot": "mainhand",
+                "item_condition": {
+                    "type": "origins:ingredient",
+                    "ingredient": {
+                        "item": "minecraft:trident"
+                    }
+                }
+            }
+        },
+        "modifier": {
+            "operation": "multiply_base",
+            "value": 1.5
+        }
+    },
+    "name": "Harpoon",
+    "description": "Tridents deal extra damage to you."
+}

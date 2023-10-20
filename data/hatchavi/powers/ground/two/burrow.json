@@ -1,0 +1,113 @@
+{
+    "name": "Burrow",
+    "description": "Using your sharper claws, you can phase swim through any stone.",
+    "type": "origins:multiple",
+    "badges": [
+        {
+            "sprite": "origins:textures/gui/badge/toggle.png",
+            "text": "Toggle with %s."
+        },
+        {
+          "sprite": "origins:textures/gui/badge/star.png",
+          "text": "Evolving upgrades your vision."
+        }
+    ],
+    "toggle": {
+        "type": "origins:toggle",
+        "active_by_default": true,
+        "key": {
+            "key": "key.origins.primary_active"
+        }
+    },
+    "phasing": {
+        "type": "origins:phasing",
+        "blacklist": false,
+     "render_type": "blindness",
+     "view_distance": 20,
+     "block_condition": {
+        "type": "origins:in_tag",
+        "tag": "hatchavi:dig2"
+    },
+    "condition": {
+        "type": "origins:power_active",
+        "power": "*:*_toggle"
+    },
+    "phase_down_condition": {
+        "type": "origins:or",
+        "conditions": [
+            {
+                "type": "origins:and",
+                "conditions": [
+                    {
+                        "type": "origins:on_block"
+                    },
+                    {
+                        "type": "origins:sneaking"
+                    }
+                ]
+            },
+            {
+                "type": "origins:and",
+                "conditions": [
+                    {
+                        "type": "origins:swimming"
+                    },
+                    {
+                        "type": "origins:sneaking"
+                    }
+                ]
+            }
+        ]
+    }
+    },
+    "swim": {
+		"type": "origins:swimming",
+		"condition": {
+            "type": "origins:in_block",
+            "block_condition": {
+                "type": "origins:and",
+                "conditions": [
+                    {
+                        "type": "origins:in_tag",
+                        "tag": "hatchavi:dig2notrans"
+                    }
+                ]
+            }
+        }
+    },
+    "regen": {
+        "type": "origins:disable_regen",
+        "condition": {
+            "type": "origins:in_block",
+            "block_condition": {
+                "type": "origins:and",
+                "conditions": [
+                    {
+                        "type": "origins:in_tag",
+                        "tag": "hatchavi:dig2"
+                    }
+                ]
+            }
+        }
+    },
+    "exhaust": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:exhaust",
+            "amount": 0.2
+        },
+        "interval": 20,
+        "condition": {
+            "type": "origins:in_block",
+            "block_condition": {
+                "type": "origins:and",
+                "conditions": [
+                    {
+                        "type": "origins:in_tag",
+                        "tag": "hatchavi:dig2"
+                    }
+                ]
+            }
+        }
+    }
+}

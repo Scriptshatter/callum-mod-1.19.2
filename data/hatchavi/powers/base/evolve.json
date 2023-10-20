@@ -1,0 +1,46 @@
+{
+    "type": "origins:action_over_time",
+    "entity_action": {
+        "type":"origins:and",
+        "actions":[
+    {
+      "type": "origins:execute_command",
+      "command": "origin gui @s origins:layer_one"
+    },
+    {
+        "type": "origins:execute_command",
+        "command": "power remove @s hatchavi:base/evolve"
+      },
+    {
+      "type": "origins:execute_command",
+      "command": "particle minecraft:flash"
+    },
+    {
+        "type": "origins:execute_command",
+        "command": "particle minecraft:poof ~ ~1 ~ 0.75 0.75 0.75 0 100 normal"
+    },
+    {
+        "type": "origins:play_sound",
+        "sound": "minecraft:entity.illusioner.cast_spell"    
+    },
+    {
+      "type": "origins:execute_command",
+      "command": "tellraw @s \"§eYou've evolved! Time to choose!\""
+    }
+    ]
+    },
+    "interval": 1,
+    "condition": {
+        "type": "origins:xp_levels",
+        "comparison": ">=",
+        "compare_to": 10
+    },
+    "name": "Highly Adaptive",
+    "description": "You can choose which path to evolve down. You evolve every 10 levels, until you hit level 30.",
+    "badges": [
+        {
+          "sprite": "origins:textures/gui/badge/info.png",
+          "text": "The Paths Are:\n - Wind Wyvern\n - Earth Wyrm\n - Sea Leviathan\n - Fire Drake "
+        }
+    ]
+}

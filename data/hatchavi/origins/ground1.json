@@ -1,0 +1,18 @@
+{
+	"powers": [
+		"hatchavi:ground/one/evolve",
+		"hatchavi:ground/one/burrow",
+		"hatchavi:ground/one/vision",
+		"hatchavi:ground/one/onhit",
+		"hatchavi:ground/one/grounded",
+		"hatchavi:ground/one/scale",
+		"hatchavi:ground/one/color",
+		"hatchavi:ground/one/particles"
+	],
+	"icon": "minecraft:flint",
+	"order": 10,
+	"impact": 1,
+	"name": "Earth Wyrm I",
+	"description": "Elusive and dangerous, Earth Wyrms burrow into the earth and poison foes.",
+    "unchoosable": true
+}

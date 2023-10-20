@@ -1,0 +1,21 @@
+{
+	"powers": [
+		"hatchavi:fire/three/burst",
+		"hatchavi:fire/three/fire",
+		"hatchavi:fire/three/on-hit",
+		"hatchavi:fire/one/projectiles",
+		"origins:water_vulnerability",
+		"hatchavi:fire/one/swim",
+		"hatchavi:fire/three/scale",
+		"origins:damage_from_snowballs",
+		"hatchavi:fire/two/snowballs",
+		"hatchavi:fire/three/color",
+		"hatchavi:fire/three/particles"
+	],
+	"icon": "minecraft:fire_charge",
+	"order": 10,
+	"impact": 3,
+	"name": "Fire Drake III",
+	"description": "Agressive and explosive, Fire Drakes have a tendency to set everything alight.",
+    "unchoosable": true
+}

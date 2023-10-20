@@ -1,0 +1,15 @@
+{
+    "name": "Stubby Limbs",
+    "description": "You prefer to fly, than to walk. You are slightly slower on land.",
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+        "attribute": "minecraft:generic.movement_speed",
+        "operation": "multiply_base",
+        "value": -0.05
+    },
+    "tick_rate": 1,
+    "condition": {
+        "type": "origins:fall_flying",
+        "inverted": true
+    }
+}

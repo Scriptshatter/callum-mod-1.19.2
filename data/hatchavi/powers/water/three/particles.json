@@ -1,0 +1,22 @@
+{
+    "hidden": true,
+    "type": "origins:particle",
+    "particle": {
+        "type": "minecraft:dust",
+        "params": "0.31 0.51 0.78 1"
+    },
+    "frequency": 40,
+    "speed": 0.1,
+    "count": 1,
+    "spread": {
+        "x": 0.75,
+        "y": 0.5,
+        "z": 0.75
+    },
+    "offset_y": 2,
+    "condition": {
+        "type": "origins:submerged_in",
+        "fluid": "minecraft:water",
+        "inverted": true
+    }
+}

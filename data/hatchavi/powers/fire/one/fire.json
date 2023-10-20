@@ -1,0 +1,21 @@
+{
+    "type": "origins:multiple",
+    "nofire": {
+        "type": "origins:fire_immunity"
+    },
+    "moredamage": {
+        "type": "origins:modify_damage_dealt",
+        "bientity_condition": {
+            "type": "origins:target_condition",
+            "condition": {
+                "type": "origins:on_fire"
+            }
+        },
+        "modifier": {
+            "operation": "multiply_base",
+            "value": 0.25
+        }
+    },
+    "name": "Charred Hunter",
+    "description": "You do not take any fire damage, and you deal 25% more damage to things on fire."
+}

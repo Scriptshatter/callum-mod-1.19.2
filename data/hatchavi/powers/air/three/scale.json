@@ -1,0 +1,43 @@
+{
+    "type": "origins:multiple",
+    "scale": {
+        "type": "origins:action_on_callback",
+        "entity_action_chosen": {
+            "type": "origins:and",
+            "actions": [
+            {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:height 1.75 @s"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:width 1.75 @s"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:reach 1.25 @s"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "scale persist set true @s"
+            }
+            ]
+        },
+        "entity_action_lost": {
+            "type": "origins:execute_command",
+            "command": "scale reset @s"
+        }
+    },
+    "health": {
+        "type": "origins:attribute",
+        "modifiers": [
+          {
+            "name": "Origin modifier",
+            "attribute": "generic.max_health",
+            "value": 4,
+            "operation": "addition"
+          }]
+    },
+    "name": "Great Size",
+    "description": "You are much bigger than the normal human, and you have more hearts than normal."
+}

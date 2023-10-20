@@ -1,0 +1,49 @@
+{
+    "type": "origins:multiple",
+    "scale": {
+        "type": "origins:action_on_callback",
+        "entity_action_chosen": {
+            "type": "origins:and",
+            "actions": [
+            {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:height 0.6 @s"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:width 0.6 @s"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "scale set pehkui:reach 0.8 @s"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "scale persist set true @s"
+            }
+            ]
+        },
+        "entity_action_lost": {
+            "type": "origins:execute_command",
+            "command": "scale reset @s"
+        }
+    },
+    "health": {
+        "type": "origins:attribute",
+        "modifiers": [
+          {
+            "name": "Origin modifier",
+            "attribute": "generic.max_health",
+            "value": -8,
+            "operation": "addition"
+          }]
+    },
+    "name": "Small Stature",
+    "description": "You have four less hearts and you're still smaller, due to the fact that you are still developing.",
+	"badges": [
+        {
+          "sprite": "origins:textures/gui/badge/info.png",
+          "text": "Fire Drakes are the second smallest Hatchling path."
+        }
+    ]
+}

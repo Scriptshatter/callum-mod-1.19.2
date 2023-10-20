@@ -1,0 +1,30 @@
+{
+    "type": "origins:action_on_callback",
+    "entity_action_chosen": {
+		"type": "origins:and",
+		"actions": [
+		{
+			"type": "origins:execute_command",
+			"command": "scale set pehkui:height 0.3 @s"
+		},
+		{
+			"type": "origins:execute_command",
+			"command": "scale set pehkui:width 0.3 @s"
+		},
+        {
+			"type": "origins:execute_command",
+			"command": "scale set pehkui:reach 0.6 @s"
+		},
+		{
+			"type": "origins:execute_command",
+			"command": "scale persist set true @s"
+		}
+		]
+    },
+    "entity_action_lost": {
+        "type": "origins:execute_command",
+        "command": "scale reset @s"
+    },
+	"name": "Developing",
+	"description": "Since you are just a newly hatched creature, you are obviously more fragile and weaker. You're also really small, but that wont last for long."
+}

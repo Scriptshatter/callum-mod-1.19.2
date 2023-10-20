@@ -1,0 +1,18 @@
+{
+	"powers": [
+		"hatchavi:air/evolve",
+		"hatchavi:air/one/flaps",
+		"hatchavi:air/one/elytra",
+		"hatchavi:air/one/grab",
+		"hatchavi:air/one/grab2",
+		"hatchavi:air/one/arrow",
+		"hatchavi:air/one/color",
+		"hatchavi:air/one/scale",
+		"hatchavi:air/fireworks"
+	],
+	"icon": "minecraft:feather",
+	"order": 10,
+	"impact": 1,
+	"name": "Wind Wyvern I",
+	"description": "Giant winged beasts, Wind Wyverns can pick up entities and travel long distances."
+}

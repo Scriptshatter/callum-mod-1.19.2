@@ -1,0 +1,27 @@
+{
+    "name": "Camoflauged Scales",
+    "description": "Due to your reflective and blue-ish scales, you are harder to see when fully submerged in water.",
+    "type": "origins:multiple",
+    "normal": {
+        "type": "origins:model_color",
+        "red": 0.46,
+        "green": 0.87,
+        "blue": 0.9,
+        "condition": {
+            "type": "origins:submerged_in",
+            "fluid": "minecraft:water",
+            "inverted": true
+        }
+    },
+    "submerged": {
+        "type": "origins:model_color",
+        "red": 0.46,
+        "green": 0.87,
+        "blue": 0.9,
+        "alpha": 0.75,
+        "condition": {
+            "type": "origins:submerged_in",
+            "fluid": "minecraft:water"
+        }
+    }
+}

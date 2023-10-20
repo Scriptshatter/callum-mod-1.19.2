@@ -1,0 +1,16 @@
+{
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+        "name": "Origin modifier",
+        "attribute": "generic.armor",
+        "value": 5,
+        "operation": "addition"
+    },
+    "tick_rate": 1,
+    "condition": {
+        "type": "origins:exposed_to_sun",
+        "inverted": true
+    },
+    "name": "Protected",
+    "description": "Being underground or out of the sun gives you extra protection."
+}

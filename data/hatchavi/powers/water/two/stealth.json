@@ -1,0 +1,38 @@
+{
+    "name": "Murky Depths",
+    "description": "Being submerged in water makes you transparent, and also removes your armor texture.",
+    "type": "origins:multiple",
+    "normal": {
+        "type": "origins:model_color",
+        "red": 0.4,
+        "green": 0.71,
+        "blue": 0.86,
+        "condition": {
+            "type": "origins:submerged_in",
+            "fluid": "minecraft:water",
+            "inverted": true
+        }
+    },
+    "submerged": {
+        "type": "origins:model_color",
+        "red": 0.4,
+        "green": 0.71,
+        "blue": 0.86,
+        "alpha": 0.5,
+        "condition": {
+            "type": "origins:submerged_in",
+            "fluid": "minecraft:water"
+        }
+    },
+    "armor": {
+        "type": "origins:prevent_feature_render",
+        "features": [
+            "armor",
+            "elytra"
+        ],
+        "condition": {
+            "type": "origins:submerged_in",
+            "fluid": "minecraft:water"
+        }
+    }
+}

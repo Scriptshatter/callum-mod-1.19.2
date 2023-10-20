@@ -1,0 +1,26 @@
+{
+    "type": "origins:multiple",
+    "nofire": {
+        "type": "origins:fire_immunity"
+    },
+    "moredamage": {
+        "type": "origins:modify_damage_dealt",
+        "bientity_condition": {
+            "type": "origins:target_condition",
+            "condition": {
+                "type": "origins:on_fire"
+            }
+        },
+        "modifier": {
+            "operation": "multiply_base",
+            "value": 0.5
+        }
+    },
+    "lava": {
+        "type": "origins:lava_vision",
+        "s": 0,
+        "v": 45
+    },
+    "name": "Charred Hunter",
+    "description": "You do not take any fire damage, and you deal 50% more damage to things on fire. You can also see well in lava."
+}

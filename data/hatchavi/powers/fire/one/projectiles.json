@@ -1,0 +1,25 @@
+{
+	"type": "origins:prevent_item_use",
+    "item_condition": {
+		"type": "origins:ingredient",
+		"ingredient": [
+			{
+			"item": "bow"
+			},
+			{
+			"item": "crossbow"
+			},
+			{
+			"item": "trident"
+			},
+			{
+			"item": "egg"
+			},
+            {
+                "item": "snowball"
+            }
+		]
+    },
+    "name": "Inept",
+    "description": "You cannot use projectiles."
+}

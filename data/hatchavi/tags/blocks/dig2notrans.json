@@ -1,0 +1,33 @@
+{
+    "replace": false,
+    "values": [
+      "minecraft:stone",
+      "minecraft:tuff",
+      "minecraft:diorite",
+      "minecraft:granite",
+      "minecraft:andesite",
+      "minecraft:coal_ore",
+      "minecraft:iron_ore",
+      "minecraft:copper_ore",
+      "minecraft:lapis_ore",
+      "minecraft:gold_ore",
+      "minecraft:diamond_ore",
+      "minecraft:sandstone",
+      "minecraft:red_sandstone",
+      "minecraft:dripstone_block",
+      "minecraft:cobblestone",
+      "minecraft:mossy_cobblestone",
+      "minecraft:dirt",
+      "minecraft:grass_block",
+      "minecraft:sand",
+      "minecraft:gravel",
+      "minecraft:clay",
+      "minecraft:moss_block",
+      "minecraft:coarse_dirt",
+      "minecraft:rooted_dirt",
+      "minecraft:podzol",
+      "minecraft:snow_block",
+      "minecraft:mud",
+      "minecraft:packed_mud"
+    ]
+  }

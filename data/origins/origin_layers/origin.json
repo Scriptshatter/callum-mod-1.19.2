@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "origins": [
+    "hatchavi:hatchling",
+    "hatchavi:air1",
+    "hatchavi:air2",
+    "hatchavi:air3",
+    "hatchavi:ground1",
+    "hatchavi:ground2",
+    "hatchavi:ground3",
+    "hatchavi:water1",
+    "hatchavi:water2",
+    "hatchavi:water3",
+    "hatchavi:fire1",
+    "hatchavi:fire2",
+    "hatchavi:fire3"
+  ]
+}
