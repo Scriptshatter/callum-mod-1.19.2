@@ -22,10 +22,10 @@ public class Callum_tooltip_component implements TooltipComponent {
     private final ItemStack hover;
     private final DefaultedList<ItemStack> upgrades;
 
-    public Callum_tooltip_component(int upgradeCap, DefaultedList<ItemStack> upgrades, ItemStack hover){
-        this.upgrade_cap = upgradeCap;
-        this.upgrades = upgrades;
-        this.hover = hover;
+    public Callum_tooltip_component(Callum_tooltip_data data){
+        this.upgrade_cap = data.getUpgrade_cap();
+        this.upgrades = data.getUpgrades();
+        this.hover = data.getHover();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Callum_tooltip_component implements TooltipComponent {
     }
 
     private int getColumns() {
-        return Math.max(2, (int)Math.ceil(Math.sqrt((double)this.upgrade_cap + 1.0)));
+        return this.upgrade_cap;
     }
 
     private void drawOutline(int x, int y, int columns, int rows, MatrixStack matrices, int z) {
@@ -86,7 +86,7 @@ public class Callum_tooltip_component implements TooltipComponent {
     public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
         int i = this.getColumns();
         int j = 1;
-        boolean bl = hover.isOf(Items.ACACIA_BOAT);
+        boolean bl = !ArmorMats.can_enter(hover);
         int k = 0;
 
         for(int l = 0; l < j; ++l) {

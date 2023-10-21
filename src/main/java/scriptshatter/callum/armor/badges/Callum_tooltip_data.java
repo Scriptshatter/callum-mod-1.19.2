@@ -5,19 +5,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 
 public class Callum_tooltip_data implements TooltipData {
-    private final DefaultedList<ItemStack> inventory;
-    private final int bundleOccupancy;
+    private final int upgrade_cap;
+    private final ItemStack hover;
+    private final DefaultedList<ItemStack> upgrades;
 
-    public Callum_tooltip_data(DefaultedList<ItemStack> inventory, int bundleOccupancy) {
-        this.inventory = inventory;
-        this.bundleOccupancy = bundleOccupancy;
+    public Callum_tooltip_data(int upgradeCap, DefaultedList<ItemStack> upgrades, ItemStack hover) {
+        this.upgrade_cap = upgradeCap;
+        this.upgrades = upgrades;
+        this.hover = hover;
     }
 
-    public DefaultedList<ItemStack> getInventory() {
-        return this.inventory;
+    public DefaultedList<ItemStack> getUpgrades() {
+        return this.upgrades;
     }
 
-    public int getBundleOccupancy() {
-        return this.bundleOccupancy;
+    public int getUpgrade_cap() {
+        return this.upgrade_cap;
+    }
+
+    public ItemStack getHover(){
+        return this.hover;
     }
 }

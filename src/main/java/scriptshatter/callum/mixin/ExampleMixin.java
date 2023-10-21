@@ -1,18 +1,20 @@
 package scriptshatter.callum.mixin;
 
-import net.fabricmc.fabric.mixin.client.rendering.ArmorFeatureRendererMixin;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.client.gui.tooltip.TooltipComponent;
+import net.minecraft.client.item.TooltipData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import scriptshatter.callum.armor.badges.Callum_tooltip_component;
+import scriptshatter.callum.armor.badges.Callum_tooltip_data;
 
-@Mixin(MinecraftServer.class)
-public class ExampleMixin {
-	@Inject(at = @At("HEAD"), method = "loadWorld")
-	private void init(CallbackInfo info) {
-		// This code is injected into the start of MinecraftServer.loadWorld()V
+@Mixin(TooltipComponent.class)
+public interface ExampleMixin {
+	@Inject(method = "of(Lnet/minecraft/client/item/TooltipData;)Lnet/minecraft/client/gui/tooltip/TooltipComponent;", at = @At("HEAD"), cancellable = true)
+	private static void render_tooltip(TooltipData data, CallbackInfoReturnable<TooltipComponent> cir){
+		if (data instanceof Callum_tooltip_data) {
+			cir.setReturnValue(new Callum_tooltip_component((Callum_tooltip_data)data));
+		}
 	}
 }
