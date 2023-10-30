@@ -1,0 +1,16 @@
+Variables: 
+idToOrigin (Hashmap to store the Origins. Uses Identifiers to get origins.)
+
+Functions:
+register (Adds the origins to the idToOrigin hashmap)
+update (removes the origin from idToOrigin and re-registers it)
+reset (clears idToOrigin and adds EMPTY to it)
+
+Can be done by record:
+size (returns size of idToOrigin)
+identifiers (returns the list of identifiers in idToOrigin)
+entries (returns all of the origins in idToOrigin)
+get (gets an origin from idToOrigin)
+contains (check if idToOrigin has the ID/Origin)
+clear (clears idToOrigin)
+remove (removes an origin from idToOrigin through its ID)

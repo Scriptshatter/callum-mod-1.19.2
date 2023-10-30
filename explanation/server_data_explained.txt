@@ -1,0 +1,13 @@
+Variables:
+performVersionCheck (This makes sure you have the correct version of origins installed.
+It hooks into a packet that, if you dont have the correct version installed or you dont have the mod,
+kicks you out and tells you that you need the mod.)
+
+origins (Stores all the origins as a JSONObject)
+
+
+Functions:
+isOriginDisabled (Checks if the origin is disabled. if the origin does not exist, it returns false.)
+isPowerDisabled (checks if the origin has the true property in JSON. it appears the JSON that is registered into minecraft is slightly different than the JSON that is written by origin creators.)
+addToConfig (adds an origin to the list of origins. If the origin has been changed, it returns true.
+It also states if a power/origin is enabled or not.)

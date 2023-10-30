@@ -1,0 +1,13 @@
+Variables:
+GSON (a deserializer for converting JSON to a class/variable)
+
+Functions:
+OriginManager (constructs the manager. takes in a deserializer and a "dataType")
+
+apply (basically registers all origins by taking every origin with the same ID, and compairing their load priorities.
+If the origin is disabled, it removes it from the registry. It then adds all the powers to the origin from the registry. If a power is disabled, it removes it.
+If the config has been changed, it basically re-registerd it for the server, and only the server. This is why if you use /reload you have to re-select your origin.)
+
+getFabricId (uhh... Just return the ID of the mod and what kind of stuff your registering I guess?)
+
+getFabricDependencies (Uhmmm... return the IDs of what other DataLoaders your using. That's my best guess.)

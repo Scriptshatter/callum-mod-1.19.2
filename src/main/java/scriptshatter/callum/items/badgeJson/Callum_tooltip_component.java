@@ -1,4 +1,4 @@
-package scriptshatter.callum.armor.badges;
+package scriptshatter.callum.items.badgeJson;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
@@ -10,22 +10,21 @@ import net.minecraft.client.gui.tooltip.TooltipComponent;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.RegistryEntry;
-import scriptshatter.callum.items.ItemRegister;
 
 public class Callum_tooltip_component implements TooltipComponent {
     public static final Identifier TEXTURE = new Identifier("textures/gui/container/bundle.png");
     private final int upgrade_cap;
     private final ItemStack hover;
     private final DefaultedList<ItemStack> upgrades;
+    private final Identifier upgrade_target;
 
     public Callum_tooltip_component(Callum_tooltip_data data){
-        this.upgrade_cap = data.getUpgrade_cap();
-        this.upgrades = data.getUpgrades();
-        this.hover = data.getHover();
+        this.upgrade_cap = data.upgradeCap();
+        this.upgrades = data.upgrades();
+        this.hover = data.hover();
+        this.upgrade_target = data.armor_id();
     }
 
     @Override
@@ -86,7 +85,7 @@ public class Callum_tooltip_component implements TooltipComponent {
     public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
         int i = this.getColumns();
         int j = 1;
-        boolean bl = !ArmorMats.can_enter(hover);
+        boolean bl = !UpgradeableItemTemplate.can_enter(hover, upgrade_target, upgrades);
         int k = 0;
 
         for(int l = 0; l < j; ++l) {
@@ -101,7 +100,7 @@ public class Callum_tooltip_component implements TooltipComponent {
     }
 
     @Environment(EnvType.CLIENT)
-    private static enum Sprite {
+    private enum Sprite {
         SLOT(0, 0, 18, 20),
         BLOCKED_SLOT(0, 40, 18, 20),
         BORDER_VERTICAL(0, 18, 1, 20),
@@ -115,7 +114,7 @@ public class Callum_tooltip_component implements TooltipComponent {
         public final int width;
         public final int height;
 
-        private Sprite(int u, int v, int width, int height) {
+        Sprite(int u, int v, int width, int height) {
             this.u = u;
             this.v = v;
             this.width = width;

@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import scriptshatter.callum.armor.badges.Callum_tooltip_component;
-import scriptshatter.callum.armor.badges.Callum_tooltip_data;
+import scriptshatter.callum.items.badgeJson.Callum_tooltip_component;
+import scriptshatter.callum.items.badgeJson.Callum_tooltip_data;
 
 @Mixin(TooltipComponent.class)
 public interface ExampleMixin {

@@ -13,10 +13,6 @@ import java.util.function.Supplier;
 public enum ArmorMats implements ArmorMaterial {
     CALLUM_CLOTHING("Callum Clothing", 70, new int[] {0, 0, 2, 3, 2, 1}, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.ofItems(Items.LEATHER));
 
-    public static boolean can_enter(ItemStack itemStack){
-        return !itemStack.isOf(Items.ACACIA_BOAT);
-    }
-
     private final String name;
     private final int durability;
     private final int[] protamt;

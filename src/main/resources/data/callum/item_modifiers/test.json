@@ -1,0 +1,6 @@
+{
+  "function": "apoli:add_power",
+  "power": "origins:arcane_skin",
+  "slot": "head",
+  "negative": true
+}

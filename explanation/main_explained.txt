@@ -1,0 +1,31 @@
+Variables:
+config (Server Config)
+configSerializer (ConfigSerializer<ServerConfig>)
+
+Register the configSerilizer with AutoConfig.register(ServerConfig.class, (definition, configClass) -> {
+				configSerializer = new BadgesJsonConfigSerializer<>(definition, configClass,
+					new BadgesConfigSerializer<>(definition, configClass));
+				return configSerializer;
+			});
+
+Register config with config = AutoConfig.getConfigHolder(ServerConfig.class).getConfig();
+
+The above two functions are put in "onInitialize" in the main class
+
+To serialize configs put
+
+	public static void serializeConfig() {
+		try {
+			configSerializer.serialize(config);
+		} catch (ConfigSerializer.SerializationException e) {
+			Origins.LOGGER.error("Failed serialization of config file: " + e.getMessage());
+		}
+	}
+
+in the main class as a seperate function.
+
+implement OrderedResourceListenerInitializer,
+
+and in order to register resource listeners you have to first get identifiers then
+get the manager and make a variable using it that's a loader
+Using the OrderedResourceListenerManager, register it with the server data resource type and the loader. then use .complete afterwards.

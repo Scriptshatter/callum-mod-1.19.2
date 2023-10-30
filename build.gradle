@@ -86,6 +86,8 @@ dependencies {
 
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-block:${project.cca_version}"
 	include "dev.onyxstudios.cardinal-components-api:cardinal-components-block:${project.cca_version}"
+	modImplementation "com.github.apace100:calio:v${project.calio_version}"
+	modImplementation "com.github.eggohito:apoli:${project.apoli_version}"
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 

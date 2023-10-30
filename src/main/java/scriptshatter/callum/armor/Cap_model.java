@@ -19,12 +19,12 @@ public class Cap_model extends AnimatedGeoModel<Cap_item> {
 
     @Override
     public Identifier getModelResource(Cap_item object) {
-        return new Identifier(Callum.MOD_ID, "geo/cap.geo.json");
+        return Callum.identifier("geo/cap.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(Cap_item object) {
-        return new Identifier(Callum.MOD_ID, "textures/item/cap.png");
+        return Callum.identifier("textures/item/cap.png");
     }
 
     @Override
