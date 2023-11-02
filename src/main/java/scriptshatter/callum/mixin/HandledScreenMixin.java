@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import scriptshatter.callum.items.ItemRegister;
+import scriptshatter.callum.items.badgeJson.UpgradeableItemTemplate;
 
 @Mixin(HandledScreen.class)
 public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen {
@@ -24,7 +25,7 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
 
     @Inject(method = "drawMouseoverTooltip", at = @At("HEAD"))
     private void render_tooltip(MatrixStack matrices, int x, int y, CallbackInfo ci){
-        if (this.focusedSlot != null && this.focusedSlot.getStack().getItem().getDefaultStack().isItemEqual(ItemRegister.CALLUM_PILOT.getDefaultStack())) {
+        if (this.focusedSlot != null && this.focusedSlot.getStack().getItem() instanceof UpgradeableItemTemplate) {
             this.renderTooltip(matrices, this.focusedSlot.getStack(), x, y);
         }
     }

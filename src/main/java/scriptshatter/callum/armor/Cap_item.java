@@ -1,7 +1,5 @@
 package scriptshatter.callum.armor;
 
-import io.github.apace100.origins.component.OriginComponent;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.entity.EquipmentSlot;

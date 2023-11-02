@@ -21,6 +21,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import scriptshatter.callum.Callum;
+import scriptshatter.callum.items.Badge_item;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.controller.AnimationController;
@@ -71,13 +73,16 @@ public interface UpgradeableItemTemplate extends IAnimatable {
 
     static boolean can_enter(ItemStack itemStack, Identifier upgrade_item, DefaultedList<ItemStack> upgrades){
         AtomicBoolean can_enter = new AtomicBoolean();
-        can_enter.set(itemStack.getNbt() != null && (Objects.equals(Identifier.tryParse(itemStack.getNbt().getString("valid_armor")), upgrade_item)));
-        if(can_enter.get()) {
-            upgrades.forEach(upgrade -> {
-                if (upgrade.getNbt() != null && Objects.equals(itemStack.getNbt().getString("upgrade_group"), upgrade.getNbt().getString("upgrade_group"))) {
-                    can_enter.set(itemStack.getNbt().getString("upgrade_group").equals(""));
-                }
-            });
+        can_enter.set(false);
+        if (itemStack.getItem() instanceof Badge_item upgrade) {
+            can_enter.set(upgrade.valid_armor == null || (Objects.equals(upgrade.valid_armor, upgrade_item)));
+            if (can_enter.get()) {
+                upgrades.forEach(upgradeInstance -> {
+                    if (upgradeInstance.getItem() instanceof Badge_item upgradeTemp) {
+                        can_enter.set(upgrade.upgrade_group == null || !upgrade.upgrade_group.equals(upgradeTemp.upgrade_group));
+                    }
+                });
+            }
         }
         return can_enter.get() || itemStack.isEmpty();
     }
@@ -121,12 +126,17 @@ public interface UpgradeableItemTemplate extends IAnimatable {
                 NbtCompound nbtCompound3 = new NbtCompound();
                 itemStack2.writeNbt(nbtCompound3);
                 nbtList.add(0, (NbtElement)nbtCompound3);
-                StackPowerUtil.getPowers(stack, upgradeableItem.itemSlot()).forEach(stackPower -> StackPowerUtil.addPower(upgradeable, stackPower));
-
+                upgradeableItem.add_upgrades(stack, upgradeable);
                 return 1;
             }
         } else {
             return 0;
+        }
+    }
+
+    default void add_upgrades(ItemStack upgrade, ItemStack upgradeable){
+        if(upgrade.getItem() instanceof Badge_item badgeItem){
+            badgeItem.powers.forEach(power -> StackPowerUtil.addPower(upgradeable, this.itemSlot(), power));
         }
     }
     //Gets the max amount of upgrades
@@ -148,11 +158,17 @@ public interface UpgradeableItemTemplate extends IAnimatable {
                 if (nbtList.isEmpty()) {
                     stack.removeSubNbt("Upgrades");
                 }
-                if(itemStack.getNbt() != null && stack.getItem() instanceof UpgradeableItemTemplate upgradeable){
-                    StackPowerUtil.getPowers(stack, upgradeable.itemSlot()).forEach(stackPower -> StackPowerUtil.removePower(stack, stackPower.slot, stackPower.powerId));
+                if(stack.getItem() instanceof UpgradeableItemTemplate upgradeable){
+                    upgradeable.remove_upgrades(itemStack, stack);
                 }
                 return Optional.of(itemStack);
             }
+        }
+    }
+
+    default void remove_upgrades(ItemStack upgrade, ItemStack upgradeable){
+        if(upgrade.getItem() instanceof Badge_item badgeItem){
+            badgeItem.powers.forEach(power -> StackPowerUtil.removePower(upgradeable, this.itemSlot(), power));
         }
     }
     //returns the amount of stacks within the item
