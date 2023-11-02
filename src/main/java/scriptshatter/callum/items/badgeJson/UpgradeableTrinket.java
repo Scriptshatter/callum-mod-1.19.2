@@ -73,12 +73,16 @@ public abstract class UpgradeableTrinket extends TrinketItem implements Upgradea
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         this.current_wearer = entity;
         PowerHolderComponent holder = PowerHolderComponent.KEY.get(current_wearer);
+
+
         this.get_items_defaulted_list(stack).forEach(upgrade -> {
             if (upgrade.getItem() instanceof Badge_item badgeItem) {
                 String upgradeGroup = badgeItem.upgrade_group != null ? badgeItem.upgrade_group : "wildcard";
                 badgeItem.powers.forEach(powerID -> holder.removePower(PowerTypeRegistry.get(powerID), Callum.identifier("badge_type_" + upgradeGroup)));
             }
         });
+
+
         holder.getPowerTypes(true).forEach(powerType -> this.get_items_defaulted_list(stack).forEach(upgrade -> {
             if (upgrade.getItem() instanceof Badge_item badgeItem) {
                 String upgradeGroup = badgeItem.upgrade_group != null ? badgeItem.upgrade_group : "wildcard";
