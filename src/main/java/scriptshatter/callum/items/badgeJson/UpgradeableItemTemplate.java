@@ -36,17 +36,8 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 
-public interface UpgradeableItemTemplate extends IAnimatable {
+public interface UpgradeableItemTemplate {
     //onClicked, onStackClicked, getTooltipData, appendTooltip
-
-    @Override
-    default void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(new AnimationController<>(this, "controller", 20, horse -> PlayState.STOP));
-    }
-    @Override
-    default AnimationFactory getFactory() {
-        return GeckoLibUtil.createFactory(this);
-    }
 
     EquipmentSlot itemSlot();
 

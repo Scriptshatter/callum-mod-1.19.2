@@ -16,5 +16,7 @@ public class Trinket_model_provider implements ExtraModelProvider {
     @Override
     public void provideExtraModels(ResourceManager manager, Consumer<Identifier> out) {
         out.accept(Callum.identifier("item/callum_goggles_model"));
+        out.accept(Callum.identifier("armor/callum_pilot_model"));
+        out.accept(Callum.identifier("item/pin_model"));
     }
 }
