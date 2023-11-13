@@ -1,0 +1,5 @@
+{
+  "type": "callum:disable_power",
+  "power": "origins:burn_in_daylight",
+  "source": "origins:phantom"
+}

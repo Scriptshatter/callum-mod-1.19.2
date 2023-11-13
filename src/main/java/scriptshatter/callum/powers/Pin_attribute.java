@@ -24,39 +24,10 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Pin_attribute extends Power {
     private final List<AttributedEntityAttributeModifier> modifiers = new LinkedList<AttributedEntityAttributeModifier>();
     private final boolean updateHealth;
-    private final ItemStack upgradeItem;
 
     public Pin_attribute(PowerType<?> type, LivingEntity entity, boolean updateHealth, ItemStack upgradeItem) {
         super(type, entity);
         this.updateHealth = updateHealth;
-        this.upgradeItem = upgradeItem;
-    }
-
-    public Pin_attribute(PowerType<?> type, LivingEntity entity, boolean updateHealth, EntityAttribute attribute, EntityAttributeModifier modifier, ItemStack upgradeItem) {
-        this(type, entity, updateHealth, upgradeItem);
-        addModifier(attribute, modifier, entity, upgradeItem);
-    }
-
-    public void addModifier(EntityAttribute attribute, EntityAttributeModifier modifier, LivingEntity livingEntity, ItemStack upgrade) {
-        List<ItemStack> items_equipped = new LinkedList<>();
-        double modVal = modifier.getValue();
-        AtomicReference<Double> newVal = new AtomicReference<>((double) 0);
-        livingEntity.getItemsEquipped().forEach(items_equipped::add);
-        if(livingEntity instanceof PlayerEntity player){
-            TrinketsApi.TRINKET_COMPONENT.get(player).forEach((slot, item) -> items_equipped.add(item));
-        }
-        items_equipped.forEach(item -> {
-            if(item.getItem() instanceof IUpgradeableItem){
-                IUpgradeableItem.getUpgrades(item).forEach((slot, upgradeThing) -> {
-                    if(upgrade.isItemEqual(upgradeThing)){
-                        newVal.updateAndGet(v -> v + modVal);
-                    }
-                });
-            }
-        });
-        EntityAttributeModifier newModif = new EntityAttributeModifier(modifier.getId(), modifier.getName(), newVal.get(), modifier.getOperation());
-        AttributedEntityAttributeModifier newMod = new AttributedEntityAttributeModifier(attribute, newModif);
-        this.modifiers.add(newMod);
     }
 
     public void addModifier(AttributedEntityAttributeModifier modifier, LivingEntity livingEntity, ItemStack upgrade) {

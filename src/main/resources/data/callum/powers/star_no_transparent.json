@@ -1,0 +1,5 @@
+{
+  "type": "callum:disable_power",
+  "power": "origins:translucent",
+  "source": "origins:phantom"
+}

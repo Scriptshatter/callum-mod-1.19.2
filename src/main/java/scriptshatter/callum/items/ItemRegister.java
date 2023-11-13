@@ -21,10 +21,23 @@ public class ItemRegister {
     static Identifier WEIRD_SKIN;
     static Identifier BONE_PIN_POWER;
     static Identifier LUMBERJACK_PIN_POWER;
+    static Identifier LUMBERJACK_SPEED_POWER;
+    static Identifier DWARF_PIN_POWER;
+    static Identifier DWARF_SPEED_POWER;
+    static Identifier STAR_NO_PHASING;
+    static Identifier STAR_NO_TRANSPARENT;
+    static Identifier STAR_YES_SUN;
+
     static {
         WEIRD_SKIN = Origins.identifier("arcane_skin");
         BONE_PIN_POWER = Callum.identifier("bone_pin");
         LUMBERJACK_PIN_POWER = Callum.identifier("lumberjack_pin");
+        LUMBERJACK_SPEED_POWER = Callum.identifier("lumberjack_speed");
+        DWARF_PIN_POWER = Callum.identifier("dwarf_pin");
+        DWARF_SPEED_POWER = Callum.identifier("dwarf_speed");
+        STAR_NO_PHASING = Callum.identifier("star_no_phasing");
+        STAR_NO_TRANSPARENT = Callum.identifier("star_no_transparent");
+        STAR_YES_SUN = Callum.identifier("star_yes_sun");
     }
     public static final Item CALLUM_ICON = register_item("callum_icon", new Item(new FabricItemSettings()));
     public static final ItemGroup CALLUM = FabricItemGroupBuilder.build(Callum.identifier("callum_itemgroup"), () -> new ItemStack(CALLUM_ICON));
@@ -42,10 +55,10 @@ public class ItemRegister {
     public static final Item PRICKLY_PIN = register_item("prickly_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0x40985e, Callum.identifier("callum_pilot"), "prickly", WEIRD_SKIN));
     public static final Item BONE_PIN = register_item("bone_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0xffd4a3, Callum.identifier("callum_pilot"), null, BONE_PIN_POWER));
     //More pins more defence
-    public static final Item LUMBERJACK_PIN = register_item("lumberjack_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0xec273f, Callum.identifier("callum_pilot"), "lumberjack", LUMBERJACK_PIN_POWER));
-    public static final Item DWARF_PIN = register_item("dwarf_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0xa097a1, Callum.identifier("callum_pilot"), "dwarf", WEIRD_SKIN));
-    public static final Item STAR_PIN = register_item("star_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0xd68fb8, Callum.identifier("callum_pilot"), "time", WEIRD_SKIN));
-    public static final Item SPACE_PIN = register_item("moon_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0x091e4d, Callum.identifier("callum_pilot"), "space", WEIRD_SKIN));
+    public static final Item LUMBERJACK_PIN = register_item("lumberjack_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0xec273f, Callum.identifier("callum_pilot"), "lumberjack", LUMBERJACK_PIN_POWER, LUMBERJACK_SPEED_POWER));
+    public static final Item DWARF_PIN = register_item("dwarf_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0xa097a1, Callum.identifier("callum_pilot"), "dwarf", DWARF_PIN_POWER, DWARF_SPEED_POWER));
+    public static final Item STAR_PIN = register_item("star_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0xd68fb8, Callum.identifier("callum_pilot"), "time",  STAR_YES_SUN, STAR_NO_TRANSPARENT, STAR_NO_PHASING));
+    public static final Item SPACE_PIN = register_item("moon_pin", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0x091e4d, Callum.identifier("callum_pilot"), "time", WEIRD_SKIN));
     public static final Item TRUTH_LENS = register_item("truth_lens", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0x0ce6f2, Callum.identifier("callum_goggles"), "lens", WEIRD_SKIN));
     public static final Item WEALTH_LENS = register_item("wealth_lens", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0xf0d696, Callum.identifier("callum_goggles"), "lens", WEIRD_SKIN));
     public static final Item VISION_LENS = register_item("vision_lens", new Upgrade_item(new FabricItemSettings().group(CALLUM), 0x3c42c4, Callum.identifier("callum_goggles"), "lens", WEIRD_SKIN));

@@ -36,7 +36,6 @@ public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEn
     @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V", at = @At("HEAD"))
     void render_upgradeable(MatrixStack matrices, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l, CallbackInfo ci){
         if(livingEntity.getEquippedStack(EquipmentSlot.HEAD).getItem() instanceof Cap_item){
-            MinecraftClient instance = MinecraftClient.getInstance();
             BipedEntityModel<LivingEntity> contextModel = (BipedEntityModel<LivingEntity>) getContextModel();
             ItemStack stack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
             ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
@@ -47,7 +46,7 @@ public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEn
             matrices.scale(1.001F, 1.001F, 1.001F);
             Trinket_model_provider.translateToHead(matrices, contextModel, livingEntity, k, l);
 
-            // Render objects
+            // Render objects Itemrenderer -> Vertex consumer there is where you will find the alpha values
             itemRenderer.renderItem(stack, ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), bakedModel);
 
             if(stack.getItem() instanceof Cap_item){

@@ -50,7 +50,7 @@ public abstract class ServerPlayerInteractionMixin implements SneakingStateSavin
     private void saveSneakingState(BlockPos pos, PlayerActionC2SPacket.Action action, Direction direction, int worldHeight, int sequence, CallbackInfo ci) {
         wasSneakingWhenStarted = player.isSneaking();
         PacketByteBuf data = new PacketByteBuf(Unpooled.buffer());
-        data.writeBoolean(!wasSneakingWhenStarted);
+        data.writeBoolean(wasSneakingWhenStarted);
         ServerPlayNetworking.send(player, Post_office.MULTI_MINING, data);
     }
 
@@ -61,7 +61,7 @@ public abstract class ServerPlayerInteractionMixin implements SneakingStateSavin
 
     @Inject(method = "finishMining", at = @At(value = "INVOKE", ordinal = 0, target = "Lnet/minecraft/server/network/ServerPlayerInteractionManager;method_41250(Lnet/minecraft/util/math/BlockPos;ZILjava/lang/String;)V"))
     private void multiMinePower(BlockPos pos, int sequence, String reason, CallbackInfo ci) {
-        if(!wasSneakingWhenStarted && !performingMultiMine) {
+        if(wasSneakingWhenStarted && !performingMultiMine) {
             performingMultiMine = true;
             PowerHolderComponent.KEY.get(player).getPowers(MultiMinePower.class).forEach(mmp -> {
                 if(mmp.isBlockStateAffected(justMinedBlockState)) {
@@ -79,6 +79,6 @@ public abstract class ServerPlayerInteractionMixin implements SneakingStateSavin
     }
     @Override
     public boolean callum_template_1_19_2$wasSneakingWhenBlockBreakingStarted() {
-        return false;
+        return wasSneakingWhenStarted;
     }
 }

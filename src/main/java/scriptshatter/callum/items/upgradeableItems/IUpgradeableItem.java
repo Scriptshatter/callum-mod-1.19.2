@@ -333,7 +333,7 @@ public interface IUpgradeableItem {
                                                         .formatted(Formatting.LIGHT_PURPLE));
                                     });
                                 }
-
+                                tooltip.add(Text.literal(" "));
                             }
                         }
                     });

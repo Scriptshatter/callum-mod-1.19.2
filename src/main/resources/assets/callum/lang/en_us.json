@@ -4,6 +4,7 @@
   "item.callum.placeholder_pin": "Upgrade test",
   "upgradeable.callum.pin": "Equipped Pins:",
   "upgradeable.callum.lens": "Current Lens:",
+  "item.callum.upgrade.stackable": "Stackable",
   "item.callum.fins_pin": "Fin Pin",
   "item.callum.diving_pin": "Diving Pin",
   "item.callum.speed_pin": "Speed Pin",
@@ -25,6 +26,13 @@
   "item.callum.callum_icon": ">:(",
   "itemGroup.callum.callum_itemgroup": "Callum's stuff",
   "power.origins.arcane_skin.description": "This uses the unused arcane skin power in origins. I use it to test pins/badges/upgrades",
-  "power.callum.bone_pin.description": "This pin enhances your bone strength, giving you increased defence!",
-  "power.callum.lumberjack_pin.description": "This is a test."
+  "power.callum.bone_pin.description": "This pin enhances your bone strength, giving you increased defence! Stacks with amount of pins equipped.",
+  "power.callum.lumberjack_pin.description": "This pin allows you to chop down entire trees with your axe! As long as you're crouching, that is.",
+  "power.callum.lumberjack_speed.description": "This pin allows you to mine wood 50 percent faster!",
+  "power.callum.dwarf_pin.description": "This pin allows you to mine entire ore veins at once! As long as you're crouching, that is.",
+  "power.callum.dwarf_speed.description": "This pin allows you to mine ores 50 percent faster!",
+  "power.callum.star_no_phasing.name": "isBad",
+  "power.callum.star_no_phasing.description": "Unfortunately, this pin prevents phantoms from phasing.",
+  "power.callum.star_no_transparent.description": "Phantoms who wear this pin will no longer be see through!",
+  "power.callum.star_yes_sun.description": "Phantoms who wear this pin will no longer burn in the sun!"
 }

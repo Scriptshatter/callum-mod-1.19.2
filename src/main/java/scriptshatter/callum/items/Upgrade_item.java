@@ -56,6 +56,9 @@ public class Upgrade_item extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(stack.getItem() instanceof Upgrade_item upgrade_item){
+            if(upgrade_item.upgrade_group == null){
+                tooltip.add(Text.translatable("item.callum.upgrade.stackable").formatted(Formatting.DARK_GREEN));
+            }
             upgrade_item.powers.forEach(powerID -> {
                 if(PowerTypeRegistry.contains(powerID)){
                     PowerType<?> powerType = PowerTypeRegistry.get(powerID);
@@ -74,7 +77,7 @@ public class Upgrade_item extends Item {
                                                 .formatted(Formatting.LIGHT_PURPLE));
                             });
                         }
-
+                        tooltip.add(Text.literal(" "));
                     }
                 }
             });
