@@ -243,7 +243,11 @@ public interface IUpgradeableItem {
         StackPowerUtil.getPowers(upgradeable, this.itemSlot()).forEach(stackPower -> StackPowerUtil.removePower(upgradeable, stackPower.slot, stackPower.powerId));
         getUpgrades(upgradeable).forEach((slot, upgradeItem) -> {
             if(upgradeItem.getItem() instanceof Upgrade_item upgrade_item){
-                upgrade_item.powers.forEach(power -> StackPowerUtil.addPower(upgradeable, itemSlot(), power, true, false));
+                upgrade_item.powers.forEach(power -> {
+                    if(!this.has_power(upgradeable, power)){
+                        StackPowerUtil.addPower(upgradeable, itemSlot(), power, true, false);
+                    }
+                });
             }
         });
     }

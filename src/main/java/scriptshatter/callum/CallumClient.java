@@ -49,6 +49,7 @@ public class CallumClient implements ClientModInitializer {
             }
             return 0x999999;
         }, ItemRegister.PLACEHOLDER_PIN,
+                ItemRegister.SPACE_PIN,
                 ItemRegister.FINS_PIN,
                 ItemRegister.DIVING_PIN,
                 ItemRegister.SPEED_PIN,
@@ -61,16 +62,10 @@ public class CallumClient implements ClientModInitializer {
                 ItemRegister.BONE_PIN,
                 ItemRegister.LUMBERJACK_PIN,
                 ItemRegister.DWARF_PIN,
-                ItemRegister.STAR_PIN);
-
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
-                    if(tintIndex != 0){
-                        return -1;
-                    }
-                    if (stack.getItem() instanceof Upgrade_item upgrade){
-                        return upgrade.color;
-                    }
-                    return 0x999999;
-                }, ItemRegister.MOON_PIN);
+                ItemRegister.STAR_PIN,
+                ItemRegister.TRUTH_LENS,
+                ItemRegister.WEALTH_LENS,
+                ItemRegister.VISION_LENS,
+                ItemRegister.SHADOW_LENS);
     }
 }

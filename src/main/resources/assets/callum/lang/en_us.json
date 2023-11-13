@@ -18,7 +18,13 @@
   "item.callum.dwarf_pin": "Dwarf Pin",
   "item.callum.star_pin": "Star Pin",
   "item.callum.moon_pin": "Moon Pin",
+  "item.callum.truth_lens": "Truth Lens",
+  "item.callum.wealth_lens": "Wealth Lens",
+  "item.callum.vision_lens": "Vision Lens",
+  "item.callum.shadow_lens": "Shadow Lens",
   "item.callum.callum_icon": ">:(",
   "itemGroup.callum.callum_itemgroup": "Callum's stuff",
-  "power.origins.arcane_skin.description": "This uses the unused arcane skin power in origins. I use it to test pins/badges/upgrades"
+  "power.origins.arcane_skin.description": "This uses the unused arcane skin power in origins. I use it to test pins/badges/upgrades",
+  "power.callum.bone_pin.description": "This pin enhances your bone strength, giving you increased defence!",
+  "power.callum.lumberjack_pin.description": "This is a test."
 }

@@ -3,7 +3,9 @@
   "package": "scriptshatter.callum.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "PlayerScreenHandlerMixin"
+    "AbstractBlockMixin",
+    "PlayerScreenHandlerMixin",
+    "ServerPlayerInteractionMixin"
   ],
   "injectors": {
     "defaultRequire": 1
