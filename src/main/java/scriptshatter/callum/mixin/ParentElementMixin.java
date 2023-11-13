@@ -1,0 +1,29 @@
+package scriptshatter.callum.mixin;
+
+import net.minecraft.client.gui.Element;
+import net.minecraft.client.gui.ParentElement;
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.slot.Slot;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import scriptshatter.callum.items.upgradeableItems.AccessWiden;
+import scriptshatter.callum.networking.C2S_scroll_packet;
+
+@Mixin(ParentElement.class)
+public interface ParentElementMixin extends Element, AccessWiden {
+
+    @Override
+    default void scroll_mouse(double mouseX, double mouseY, double amount){
+        if(this instanceof HandledScreen<?> handledScreen) {
+            AccessWiden widener = (AccessWiden)handledScreen;
+            Slot slot = widener.get_slot(mouseX, mouseY);
+            if (slot != null) {
+                C2S_scroll_packet.scroll_client(slot.id, amount > 0 ? 1 : -1);
+            }
+        }
+    }
+}

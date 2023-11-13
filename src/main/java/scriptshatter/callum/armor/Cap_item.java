@@ -1,5 +1,6 @@
 package scriptshatter.callum.armor;
 
+import io.github.apace100.apoli.power.PowerTypeRegistry;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.entity.EquipmentSlot;
@@ -15,20 +16,30 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import scriptshatter.callum.Callum;
 import scriptshatter.callum.armor.badges.ArmorMats;
-import scriptshatter.callum.items.ItemRegister;
-import scriptshatter.callum.items.badgeJson.UpgradeableItemTemplate;
+import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
 
 import java.util.List;
 import java.util.Optional;
 
-public class Cap_item extends ArmorItem implements UpgradeableItemTemplate {
+public class Cap_item extends ArmorItem implements IUpgradeableItem {
     public Cap_item(Settings settings) {
         super(ArmorMats.CALLUM_CLOTHING, EquipmentSlot.HEAD, settings);
     }
 
     @Override
+    public boolean isDamageable() {
+        return false;
+    }
+
+
+    @Override
     public EquipmentSlot itemSlot() {
         return EquipmentSlot.HEAD;
+    }
+
+    @Override
+    public String upgrade_type() {
+        return "pin";
     }
 
     @Override

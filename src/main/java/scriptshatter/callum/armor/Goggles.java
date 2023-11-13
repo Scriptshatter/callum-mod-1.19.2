@@ -1,10 +1,9 @@
 package scriptshatter.callum.armor;
 
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
 import scriptshatter.callum.Callum;
-import scriptshatter.callum.items.badgeJson.UpgradeableTrinket;
+import scriptshatter.callum.items.upgradeableItems.UpgradeableTrinket;
 
 public class Goggles extends UpgradeableTrinket {
     public Goggles(Settings settings) {
@@ -14,6 +13,11 @@ public class Goggles extends UpgradeableTrinket {
     @Override
     public EquipmentSlot itemSlot() {
         return EquipmentSlot.HEAD;
+    }
+
+    @Override
+    public String upgrade_type() {
+        return "lens";
     }
 
     @Override

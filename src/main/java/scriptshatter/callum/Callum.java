@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scriptshatter.callum.items.ItemRegister;
+import scriptshatter.callum.networking.Post_office;
 
 public class Callum implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -25,6 +26,9 @@ public class Callum implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ItemRegister.register_moditems();
+		Post_office.register_shitty_ass_mother_fucking_mail_C2S();
 		LOGGER.info("Hello Fabric world!");
 	}
+
+
 }

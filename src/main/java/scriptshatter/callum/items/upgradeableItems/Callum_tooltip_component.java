@@ -1,32 +1,36 @@
-package scriptshatter.callum.items.badgeJson;
+package scriptshatter.callum.items.upgradeableItems;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.TooltipComponent;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 
+import java.util.HashMap;
+
+@Environment(EnvType.CLIENT)
 public class Callum_tooltip_component implements TooltipComponent {
     public static final Identifier TEXTURE = new Identifier("textures/gui/container/bundle.png");
     private final int upgrade_cap;
     private final ItemStack hover;
-    private final DefaultedList<ItemStack> upgrades;
+    private final HashMap<Integer, ItemStack> upgrades;
     private final Identifier upgrade_target;
+    private final int selected_slot;
+    private final Callum_tooltip_data data;
 
     public Callum_tooltip_component(Callum_tooltip_data data){
-        this.upgrade_cap = data.upgradeCap();
-        this.upgrades = data.upgrades();
+        this.upgrade_cap = ((IUpgradeableItem)data.upgradeable().getItem()).getUpgrade_cap();
+        this.upgrades = IUpgradeableItem.getUpgrades(data.upgradeable());
         this.hover = data.hover();
-        this.upgrade_target = data.armor_id();
+        this.upgrade_target = ((IUpgradeableItem)data.upgradeable().getItem()).get_id();
+        this.selected_slot = ((IUpgradeableItem)data.upgradeable().getItem()).get_selected_slot(data.upgradeable());
+        this.data = data;
     }
 
     @Override
@@ -40,17 +44,15 @@ public class Callum_tooltip_component implements TooltipComponent {
     }
 
     private void drawSlot(int x, int y, int index, boolean shouldBlock, TextRenderer textRenderer, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
-        if (index >= this.upgrades.size()) {
-            this.draw(matrices, x, y, z, shouldBlock ? Callum_tooltip_component.Sprite.BLOCKED_SLOT : Callum_tooltip_component.Sprite.SLOT);
-        } else {
-            ItemStack itemStack = this.upgrades.get(index);
-            this.draw(matrices, x, y, z, Callum_tooltip_component.Sprite.SLOT);
-            itemRenderer.renderInGuiWithOverrides(itemStack, x + 1, y + 1, index);
-            itemRenderer.renderGuiItemOverlay(textRenderer, itemStack, x + 1, y + 1);
-            if (index == 0) {
-                HandledScreen.drawSlotHighlight(matrices, x + 1, y + 1, z);
-            }
-
+        ItemStack itemStack = this.upgrades.get(index);
+        if(itemStack == null){
+            itemStack = ItemStack.EMPTY;
+        }
+        this.draw(matrices, x, y, z, shouldBlock ? Callum_tooltip_component.Sprite.BLOCKED_SLOT : Callum_tooltip_component.Sprite.SLOT);
+        itemRenderer.renderInGuiWithOverrides(itemStack, x + 1, y + 1, index);
+        itemRenderer.renderGuiItemOverlay(textRenderer, itemStack, x + 1, y + 1);
+        if (index == selected_slot) {
+            HandledScreen.drawSlotHighlight(matrices, x + 1, y + 1, z);
         }
     }
 
@@ -87,8 +89,8 @@ public class Callum_tooltip_component implements TooltipComponent {
     public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
         int i = this.getColumns();
         int j = 1;
-        boolean bl = !UpgradeableItemTemplate.can_enter(hover, upgrade_target, upgrades);
-        int k = 0;
+        boolean bl = !IUpgradeableItem.can_enter(hover, upgrade_target, data.upgradeable());
+        int k = 1;
 
         for(int l = 0; l < j; ++l) {
             for(int m = 0; m < i; ++m) {

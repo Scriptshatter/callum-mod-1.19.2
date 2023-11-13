@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "callum:item/badge_underlays/pin",
+    "layer1": "callum:item/badge_overlays/speed_pin"
+  }
+}

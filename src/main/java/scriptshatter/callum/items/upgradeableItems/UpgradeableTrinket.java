@@ -1,18 +1,13 @@
-package scriptshatter.callum.items.badgeJson;
+package scriptshatter.callum.items.upgradeableItems;
 
 import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketItem;
-import dev.emi.trinkets.api.TrinketsApi;
 import io.github.apace100.apoli.component.PowerHolderComponent;
-import io.github.apace100.apoli.mixin.LivingEntityMixin;
 import io.github.apace100.apoli.power.PowerType;
 import io.github.apace100.apoli.power.PowerTypeRegistry;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.mixin.item.client.ItemStackMixin;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
@@ -21,17 +16,14 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 import net.minecraft.util.ClickType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import scriptshatter.callum.Callum;
-import scriptshatter.callum.items.Badge_item;
-import scriptshatter.callum.items.ItemRegister;
+import scriptshatter.callum.items.Upgrade_item;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-public abstract class UpgradeableTrinket extends TrinketItem implements UpgradeableItemTemplate {
+public abstract class UpgradeableTrinket extends TrinketItem implements IUpgradeableItem {
     public UpgradeableTrinket(Settings settings) {
         super(settings.maxCount(1));
         being_worn = false;
@@ -61,7 +53,7 @@ public abstract class UpgradeableTrinket extends TrinketItem implements Upgradea
     }
 
     @Override
-    public void add_upgrades(ItemStack upgrade, ItemStack upgradeable) {
+    public void update_powers(ItemStack upgradeable) {
     }
 
     // This adds and removes powers based on upgrades when you have the trinket on your person.
@@ -71,8 +63,8 @@ public abstract class UpgradeableTrinket extends TrinketItem implements Upgradea
             ItemStack stack = slot.inventory().getStack(slot.index());
             PowerHolderComponent holder = PowerHolderComponent.KEY.get(entity);
 
-            this.get_items_defaulted_list(stack).forEach(upgrade -> {
-                if (upgrade.getItem() instanceof Badge_item badgeItem) {
+            IUpgradeableItem.getUpgrades(stack).forEach((upgrade_slot, upgrade) -> {
+                if (upgrade.getItem() instanceof Upgrade_item badgeItem) {
                     String upgradeGroup = badgeItem.upgrade_group != null ? badgeItem.upgrade_group : "wildcard";
                     badgeItem.powers.forEach(powerID -> holder.addPower(PowerTypeRegistry.get(powerID), Callum.identifier("badge_type_" + upgradeGroup)));
                 }
@@ -88,8 +80,8 @@ public abstract class UpgradeableTrinket extends TrinketItem implements Upgradea
                     }
                 });
 
-                this.get_items_defaulted_list(stack).forEach(upgrade -> {
-                    if (upgrade.getItem() instanceof Badge_item badgeItem) {
+                IUpgradeableItem.getUpgrades(stack).forEach((upgrade_slot, upgrade) -> {
+                    if (upgrade.getItem() instanceof Upgrade_item badgeItem) {
                         String upgradeGroup = badgeItem.upgrade_group != null ? badgeItem.upgrade_group : "wildcard";
                         marked_sources.remove(Callum.identifier("badge_type_" + upgradeGroup));
                     }
@@ -107,10 +99,6 @@ public abstract class UpgradeableTrinket extends TrinketItem implements Upgradea
         }
     }
 
-    @Override
-    public void remove_upgrades(ItemStack upgrade, ItemStack upgradeable) {
-    }
-
     // Basically enables the tick function to run, since sometimes it would run one more time after you had taken it off.
     @Override
     public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
@@ -122,9 +110,9 @@ public abstract class UpgradeableTrinket extends TrinketItem implements Upgradea
     @Override
     public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
         being_worn = false;
-        if(stack.getItem() instanceof UpgradeableItemTemplate upgradeableItem){
-            upgradeableItem.get_items_defaulted_list(stack).forEach(upgrade -> {
-                if (upgrade.getItem() instanceof Badge_item badgeItem) {
+        if(stack.getItem() instanceof IUpgradeableItem){
+            IUpgradeableItem.getUpgrades(stack).forEach((upgrade_slot, upgrade) -> {
+                if (upgrade.getItem() instanceof Upgrade_item badgeItem) {
                     String upgradeGroup = badgeItem.upgrade_group != null ? badgeItem.upgrade_group : "wildcard";
                     PowerHolderComponent holder = PowerHolderComponent.KEY.get(entity);
                     badgeItem.powers.forEach(powerID -> holder.removePower(PowerTypeRegistry.get(powerID), Callum.identifier("badge_type_" + upgradeGroup)));

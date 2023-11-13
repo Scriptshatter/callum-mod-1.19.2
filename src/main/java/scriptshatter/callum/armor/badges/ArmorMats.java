@@ -7,12 +7,12 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import software.bernie.geckolib3.mixins.fabric.MixinArmorFeatureRenderer;
 
 import java.util.function.Supplier;
 
 public enum ArmorMats implements ArmorMaterial {
-    CALLUM_CLOTHING("Callum Clothing", 70, new int[] {0, 0, 2, 3, 2, 1}, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.ofItems(Items.LEATHER));
-
+    CALLUM_CLOTHING("Callum Clothing", 0, new int[] {0, 0, 2, 3, 2, 1}, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.ofItems(Items.LEATHER));
     private final String name;
     private final int durability;
     private final int[] protamt;

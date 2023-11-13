@@ -3,12 +3,17 @@
   "package": "scriptshatter.callum.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "PlayerScreenHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "ArmorRenderMixin",
+    "CreativeScreenMixin",
     "ExampleMixin",
-    "HandledScreenMixin"
+    "HandledScreenMixin",
+    "MouseMixin",
+    "ParentElementMixin"
   ]
 }

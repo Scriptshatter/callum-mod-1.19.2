@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "callum:item/badge_underlays/pin",
+    "layer0": "callum:item/badge_underlays/placeholder",
     "layer1": "callum:item/badge_overlays/placeholder"
   }
 }
