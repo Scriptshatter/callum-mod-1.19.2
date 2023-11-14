@@ -15,6 +15,7 @@ import scriptshatter.callum.armor.client.Trinket_model_provider;
 import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.ItemRegister;
 import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
+import scriptshatter.callum.networking.Post_office;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -24,6 +25,8 @@ public class CallumClient implements ClientModInitializer {
         ArmorRenderer.register(new Cap_renderer(), ItemRegister.CALLUM_PILOT);
         TrinketRendererRegistry.registerRenderer(ItemRegister.CALLUM_GOGGLES, new Goggles_render());
         ModelLoadingRegistry.INSTANCE.registerModelProvider(new Trinket_model_provider());
+        Post_office.S2C();
+
         ColorProviderRegistry.ITEM.register(((stack, tintIndex) -> {
             if(tintIndex != 1){
                 return -1;
@@ -37,7 +40,7 @@ public class CallumClient implements ClientModInitializer {
                 });
                 return current_color.get();
             }
-            return 0x999999;
+            return 0x00999999;
         }), ItemRegister.CALLUM_GOGGLES);
 
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {

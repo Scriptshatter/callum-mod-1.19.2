@@ -1,5 +1,8 @@
 package scriptshatter.callum.powers;
 
+import io.github.apace100.apoli.Apoli;
+import io.github.apace100.apoli.power.IgnoreWaterPower;
+import io.github.apace100.apoli.power.Power;
 import io.github.apace100.apoli.power.factory.PowerFactory;
 import io.github.apace100.apoli.power.factory.PowerFactorySupplier;
 import io.github.apace100.apoli.registry.ApoliRegistries;
@@ -105,6 +108,7 @@ public class CallumPowerFactory {
                                     return new ArrayList<>(affected);
                                 }, state -> state.isIn(TagKey.of(Registry.BLOCK_KEY, new Identifier("c", "ores")))).addCondition(e -> e instanceof LivingEntity l && l.getMainHandStack().getItem() instanceof PickaxeItem)
         ));
+        register(() -> Power.createSimpleFactory(InvisEquipmentPower::new, Callum.identifier("invis_armor")));
     }
 
     private static void register(io.github.apace100.apoli.power.factory.PowerFactory<?> powerFactory) {

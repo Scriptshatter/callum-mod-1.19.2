@@ -17,6 +17,10 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+	}
+	maven {
 		name = "Ladysnake Libs"
 		url = 'https://maven.ladysnake.org/releases'
 	}
@@ -90,6 +94,7 @@ dependencies {
 	modImplementation "com.github.apace100:calio:v${project.calio_version}"
 	modImplementation "com.github.eggohito:apoli:${project.apoli_version}"
 	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
+	modImplementation "com.github.CaffeineMC:sodium-fabric:mc1.19.2-0.4.4"
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 

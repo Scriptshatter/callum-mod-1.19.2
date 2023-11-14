@@ -6,6 +6,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
@@ -17,9 +18,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class Upgrade_item extends Item {
     //NBT values are: valid_armor, upgrade_group, Powers
+    public static ItemStack make_invis(ItemStack template, boolean should_invis){
+        ItemStack pin_stack = template.copy();
+        NbtCompound temp = pin_stack.getOrCreateNbt();
+        temp.putBoolean("should_invis", should_invis);
+        return pin_stack;
+    }
     @Nullable
     public final Identifier valid_armor;
     @Nullable

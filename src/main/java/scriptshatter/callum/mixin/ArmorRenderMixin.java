@@ -1,7 +1,13 @@
 package scriptshatter.callum.mixin;
 
+import io.github.apace100.apoli.component.PowerHolderComponent;
+import me.jellysquid.mods.sodium.client.gui.SodiumGameOptions;
+import me.jellysquid.mods.sodium.client.model.quad.blender.ColorSampler;
+import me.jellysquid.mods.sodium.mixin.core.model.MixinItemColors;
 import net.fabricmc.fabric.api.client.model.BakedModelManagerHelper;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
@@ -15,6 +21,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +31,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import scriptshatter.callum.Callum;
 import scriptshatter.callum.armor.Cap_item;
 import scriptshatter.callum.armor.client.Trinket_model_provider;
+import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
+import scriptshatter.callum.powers.InvisEquipmentPower;
 
 @Mixin(ArmorFeatureRenderer.class)
 public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
@@ -39,6 +48,7 @@ public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEn
             BipedEntityModel<LivingEntity> contextModel = (BipedEntityModel<LivingEntity>) getContextModel();
             ItemStack stack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
             ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+
             BakedModel bakedModel;
 
             bakedModel = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), Callum.identifier("armor/callum_pilot_model"));
@@ -47,7 +57,7 @@ public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEn
             Trinket_model_provider.translateToHead(matrices, contextModel, livingEntity, k, l);
 
             // Render objects Itemrenderer -> Vertex consumer there is where you will find the alpha values
-            itemRenderer.renderItem(stack, ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), bakedModel);
+            itemRenderer.renderItem(Upgrade_item.make_invis(stack, PowerHolderComponent.hasPower(livingEntity, InvisEquipmentPower.class)), ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), bakedModel);
 
             if(stack.getItem() instanceof Cap_item){
                 IUpgradeableItem.getUpgrades(stack).forEach((pin_slot, pinInstance) -> {
@@ -74,7 +84,8 @@ public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEn
                             matrices.multiply(Vec3f.POSITIVE_Z.getRadialQuaternion(120));
                         }
                     }
-                    itemRenderer.renderItem(pinInstance, ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), pinModel);
+
+                    itemRenderer.renderItem(Upgrade_item.make_invis(pinInstance, PowerHolderComponent.hasPower(livingEntity, InvisEquipmentPower.class)), ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), pinModel);
                     matrices.pop();
 
                 });

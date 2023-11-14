@@ -15,14 +15,20 @@ import scriptshatter.callum.Callum;
 public class Post_office {
     public static final Identifier SCROLL_ID = Callum.identifier("scroll");
     public static final Identifier MULTI_MINING = Callum.identifier("classes_multi_mining");
+    public static final Identifier GET_PLAYER = Callum.identifier("get_player");
 
     public static void register_shitty_ass_mother_fucking_mail_C2S(){
         ServerPlayNetworking.registerGlobalReceiver(SCROLL_ID, C2S_scroll_packet::register);
+        ServerPlayNetworking.registerGlobalReceiver(GET_PLAYER, C2S_grab_player::register);
+    }
+
+    public static void S2C(){
         ClientPlayConnectionEvents.INIT.register(((clientPlayNetworkHandler, minecraftClient) -> {
             ClientPlayNetworking.registerReceiver(MULTI_MINING, Post_office::receiveMultiMine);
         }));
-
     }
+
+
     public static boolean isMultiMining;
 
     @Environment(EnvType.CLIENT)
