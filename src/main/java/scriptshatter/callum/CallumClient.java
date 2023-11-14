@@ -11,6 +11,7 @@ import net.minecraft.item.ItemConvertible;
 import scriptshatter.callum.armor.Goggles;
 import scriptshatter.callum.armor.client.Cap_renderer;
 import scriptshatter.callum.armor.client.Goggles_render;
+import scriptshatter.callum.armor.client.Trans_model;
 import scriptshatter.callum.armor.client.Trinket_model_provider;
 import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.ItemRegister;
@@ -22,8 +23,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CallumClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+
         ArmorRenderer.register(new Cap_renderer(), ItemRegister.CALLUM_PILOT);
         TrinketRendererRegistry.registerRenderer(ItemRegister.CALLUM_GOGGLES, new Goggles_render());
+
         ModelLoadingRegistry.INSTANCE.registerModelProvider(new Trinket_model_provider());
         Post_office.S2C();
 

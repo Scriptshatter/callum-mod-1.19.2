@@ -1,14 +1,18 @@
 package scriptshatter.callum.mixin;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.apace100.apoli.component.PowerHolderComponent;
 import me.jellysquid.mods.sodium.client.gui.SodiumGameOptions;
 import me.jellysquid.mods.sodium.client.model.quad.blender.ColorSampler;
 import me.jellysquid.mods.sodium.mixin.core.model.MixinItemColors;
 import net.fabricmc.fabric.api.client.model.BakedModelManagerHelper;
+import net.fabricmc.fabric.api.renderer.v1.Renderer;
+import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
+import net.fabricmc.fabric.api.renderer.v1.mesh.MeshBuilder;
+import net.fabricmc.fabric.api.renderer.v1.mesh.QuadEmitter;
+import net.fabricmc.fabric.impl.client.indigo.renderer.helper.ColorHelper;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderLayers;
-import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
@@ -30,6 +34,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import scriptshatter.callum.Callum;
 import scriptshatter.callum.armor.Cap_item;
+import scriptshatter.callum.armor.client.Trans_model;
 import scriptshatter.callum.armor.client.Trinket_model_provider;
 import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
@@ -55,9 +60,15 @@ public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEn
             matrices.push();
             matrices.scale(1.001F, 1.001F, 1.001F);
             Trinket_model_provider.translateToHead(matrices, contextModel, livingEntity, k, l);
-
+            if(PowerHolderComponent.hasPower(livingEntity, InvisEquipmentPower.class)){
+                Trans_model model1 = new Trans_model(bakedModel);
+                itemRenderer.renderItem(stack, ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), model1);
+            }
+            else {
+                itemRenderer.renderItem(stack, ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), bakedModel);
+            }
             // Render objects Itemrenderer -> Vertex consumer there is where you will find the alpha values
-            itemRenderer.renderItem(Upgrade_item.make_invis(stack, PowerHolderComponent.hasPower(livingEntity, InvisEquipmentPower.class)), ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), bakedModel);
+
 
             if(stack.getItem() instanceof Cap_item){
                 IUpgradeableItem.getUpgrades(stack).forEach((pin_slot, pinInstance) -> {
