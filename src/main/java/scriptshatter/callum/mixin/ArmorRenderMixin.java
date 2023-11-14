@@ -1,16 +1,13 @@
 package scriptshatter.callum.mixin;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.apace100.apoli.component.PowerHolderComponent;
-import me.jellysquid.mods.sodium.client.gui.SodiumGameOptions;
-import me.jellysquid.mods.sodium.client.model.quad.blender.ColorSampler;
-import me.jellysquid.mods.sodium.mixin.core.model.MixinItemColors;
 import net.fabricmc.fabric.api.client.model.BakedModelManagerHelper;
 import net.fabricmc.fabric.api.renderer.v1.Renderer;
 import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
 import net.fabricmc.fabric.api.renderer.v1.mesh.MeshBuilder;
 import net.fabricmc.fabric.api.renderer.v1.mesh.QuadEmitter;
-import net.fabricmc.fabric.impl.client.indigo.renderer.helper.ColorHelper;
+import net.fabricmc.fabric.impl.client.indigo.renderer.render.IndigoQuadHandler;
+import net.fabricmc.fabric.impl.client.indigo.renderer.render.ItemRenderContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -25,8 +22,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import scriptshatter.callum.Callum;
 import scriptshatter.callum.armor.Cap_item;
-import scriptshatter.callum.armor.client.Trans_model;
+import scriptshatter.callum.armor.client.Trans_cap_model;
 import scriptshatter.callum.armor.client.Trinket_model_provider;
 import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
@@ -61,8 +56,8 @@ public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEn
             matrices.scale(1.001F, 1.001F, 1.001F);
             Trinket_model_provider.translateToHead(matrices, contextModel, livingEntity, k, l);
             if(PowerHolderComponent.hasPower(livingEntity, InvisEquipmentPower.class)){
-                Trans_model model1 = new Trans_model(bakedModel);
-                itemRenderer.renderItem(stack, ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), model1);
+                Trans_cap_model model = new Trans_cap_model();
+                itemRenderer.renderItem(stack, ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), model);
             }
             else {
                 itemRenderer.renderItem(stack, ModelTransformation.Mode.HEAD, false, matrices, vertexConsumerProvider, i, LivingEntityRenderer.getOverlay(livingEntity, 0), bakedModel);

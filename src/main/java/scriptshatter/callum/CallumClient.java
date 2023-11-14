@@ -2,16 +2,12 @@ package scriptshatter.callum;
 
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.client.color.item.ItemColorProvider;
-import net.minecraft.item.ItemConvertible;
 import scriptshatter.callum.armor.Goggles;
 import scriptshatter.callum.armor.client.Cap_renderer;
 import scriptshatter.callum.armor.client.Goggles_render;
-import scriptshatter.callum.armor.client.Trans_model;
 import scriptshatter.callum.armor.client.Trinket_model_provider;
 import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.ItemRegister;

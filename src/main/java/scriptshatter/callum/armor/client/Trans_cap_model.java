@@ -1,15 +1,16 @@
 package scriptshatter.callum.armor.client;
 
-import com.mojang.datafixers.util.Pair;
-import net.fabricmc.fabric.api.renderer.v1.mesh.QuadEmitter;
+import net.fabricmc.fabric.api.client.model.BakedModelManagerHelper;
 import net.fabricmc.fabric.api.renderer.v1.model.FabricBakedModel;
 import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.item.ItemModels;
+import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.*;
 import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.Sprite;
-import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -17,19 +18,17 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockRenderView;
 import org.jetbrains.annotations.Nullable;
+import scriptshatter.callum.Callum;
+import scriptshatter.callum.armor.Cap_item;
+import scriptshatter.callum.armor.Goggles;
+import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class Trans_model implements FabricBakedModel, BakedModel {
-    private final BakedModel template_model;
+public class Trans_cap_model implements FabricBakedModel, BakedModel{
 
-    public Trans_model(BakedModel templateModel){
-        template_model = templateModel;
-    }
+    //Make a constructor that takes in item stack and generate model based on that
 
     @Override
     public boolean isVanillaAdapter() {
@@ -41,12 +40,23 @@ public class Trans_model implements FabricBakedModel, BakedModel {
 
     }
 
+    private BakedModel template_model = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), Callum.identifier("item/callum_goggles_model"));
+
     @Override
     public void emitItemQuads(ItemStack stack, Supplier<Random> randomSupplier, RenderContext context) {
-        QuadEmitter emitter = context.getEmitter();
-        for (int p = 0; p < 4; p++) {
-            emitter.spriteColor(p, 0, 0x7FFFFFFF);
+        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+        BakedModel bakedModel = itemRenderer.getModels().getModel(stack);
+        if(stack.getItem() instanceof Goggles){
+            bakedModel = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), Callum.identifier("item/callum_goggles_model"));
         }
+        else if (stack.getItem() instanceof Cap_item){
+            bakedModel = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), Callum.identifier("armor/callum_pilot_model"));
+        }
+
+        context.getEmitter().spriteColor(0, 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff);
+        context.getEmitter().emit();
+        context.bakedModelConsumer().accept(bakedModel);
+        template_model = bakedModel;
     }
 
     @Override
