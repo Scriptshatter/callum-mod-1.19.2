@@ -5,7 +5,6 @@ import dev.emi.trinkets.api.TrinketItem;
 import io.github.apace100.apoli.component.PowerHolderComponent;
 import io.github.apace100.apoli.power.PowerType;
 import io.github.apace100.apoli.power.PowerTypeRegistry;
-import net.fabricmc.fabric.mixin.item.client.ItemStackMixin;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.entity.LivingEntity;

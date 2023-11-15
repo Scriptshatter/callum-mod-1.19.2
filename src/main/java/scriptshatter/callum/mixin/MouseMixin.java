@@ -1,9 +1,7 @@
 package scriptshatter.callum.mixin;
 
-import dev.emi.trinkets.mixin.HandledScreenMixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
-import net.minecraft.client.gui.screen.FatalErrorScreen;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

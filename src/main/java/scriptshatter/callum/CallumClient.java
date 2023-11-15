@@ -9,8 +9,8 @@ import scriptshatter.callum.armor.Goggles;
 import scriptshatter.callum.armor.client.Cap_renderer;
 import scriptshatter.callum.armor.client.Goggles_render;
 import scriptshatter.callum.armor.client.Trinket_model_provider;
-import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.ItemRegister;
+import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
 import scriptshatter.callum.networking.Post_office;
 

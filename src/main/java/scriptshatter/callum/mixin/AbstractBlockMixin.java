@@ -1,6 +1,6 @@
 package scriptshatter.callum.mixin;
+
 import io.github.apace100.apoli.component.PowerHolderComponent;
-import scriptshatter.callum.powers.MultiMinePower;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import scriptshatter.callum.networking.Post_office;
+import scriptshatter.callum.powers.MultiMinePower;
 import scriptshatter.callum.powers.SneakingStateSavingManager;
 
 @Mixin(AbstractBlock.class)
