@@ -1,7 +1,5 @@
 package scriptshatter.callum.powers;
 
-import io.github.apace100.apoli.Apoli;
-import io.github.apace100.apoli.power.IgnoreWaterPower;
 import io.github.apace100.apoli.power.Power;
 import io.github.apace100.apoli.power.factory.PowerFactory;
 import io.github.apace100.apoli.power.factory.PowerFactorySupplier;

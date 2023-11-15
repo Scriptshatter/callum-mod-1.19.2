@@ -1,17 +1,11 @@
 package scriptshatter.callum.powers;
 
-import io.github.apace100.apoli.data.ApoliDataTypes;
 import io.github.apace100.apoli.power.Power;
 import io.github.apace100.apoli.power.PowerType;
-import io.github.apace100.apoli.power.factory.PowerFactory;
-import io.github.apace100.apoli.util.AttributedEntityAttributeModifier;
-import io.github.apace100.calio.data.SerializableData;
-import io.github.apace100.calio.data.SerializableDataTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.data.client.BlockStateVariantMap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
-import scriptshatter.callum.Callum;
 
 import java.util.List;
 import java.util.function.Predicate;

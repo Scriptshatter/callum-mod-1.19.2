@@ -8,9 +8,9 @@ import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
 import net.fabricmc.fabric.impl.client.indigo.renderer.IndigoRenderer;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.*;
+import net.minecraft.client.render.model.BakedModel;
+import net.minecraft.client.render.model.BakedQuad;
 import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.Sprite;
@@ -23,10 +23,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import scriptshatter.callum.Callum;
-import scriptshatter.callum.armor.Cap_item;
-import scriptshatter.callum.armor.Goggles;
-import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -53,7 +49,7 @@ public class Trans_cap_model implements FabricBakedModel, BakedModel{
 
     }
 
-    private final BakedModel template_model;
+    public final BakedModel template_model;
 
     @Override
     public void emitItemQuads(ItemStack stack, Supplier<Random> randomSupplier, RenderContext context) {
