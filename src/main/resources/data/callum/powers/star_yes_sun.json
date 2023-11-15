@@ -1,5 +1,6 @@
 {
   "type": "callum:disable_power",
   "power": "origins:burn_in_daylight",
-  "source": "origins:phantom"
+  "source": "origins:phantom",
+  "loading_priority": 9999
 }

@@ -20,12 +20,6 @@ import java.util.List;
 
 public class Upgrade_item extends Item{
     //NBT values are: valid_armor, upgrade_group, Powers
-    public static ItemStack make_invis(ItemStack template, boolean should_invis){
-        ItemStack pin_stack = template.copy();
-        NbtCompound temp = pin_stack.getOrCreateNbt();
-        temp.putBoolean("should_invis", should_invis);
-        return pin_stack;
-    }
     @Nullable
     public final Identifier valid_armor;
     @Nullable

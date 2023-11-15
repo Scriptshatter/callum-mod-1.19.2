@@ -15,6 +15,7 @@
     "CreativeScreenMixin",
     "ExampleMixin",
     "HandledScreenMixin",
+    "ItemRendererMixin",
     "MouseMixin",
     "ParentElementMixin"
   ]

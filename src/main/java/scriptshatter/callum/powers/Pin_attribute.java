@@ -96,10 +96,10 @@ public class Pin_attribute extends Power {
                 data ->
                         (type, entity) -> {
                             Pin_attribute ap = new Pin_attribute(type, entity, data.getBoolean("update_health"), data.get("upgrade"));
-                            if(data.isPresent("modifier")) {
+                            if(data.isPresent("modifier") && entity != null) {
                                 ap.addModifier(data.get("modifier"), entity, data.get("upgrade"));
                             }
-                            if(data.isPresent("modifiers")) {
+                            if(data.isPresent("modifiers") && entity != null) {
                                 List<AttributedEntityAttributeModifier> modifierList = data.get("modifiers");
                                 modifierList.forEach(mod -> ap.addModifier(mod, entity, data.get("upgrade")));
                             }

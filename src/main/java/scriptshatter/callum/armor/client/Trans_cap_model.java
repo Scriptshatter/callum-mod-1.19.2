@@ -1,8 +1,11 @@
 package scriptshatter.callum.armor.client;
 
 import net.fabricmc.fabric.api.client.model.BakedModelManagerHelper;
+import net.fabricmc.fabric.api.renderer.v1.mesh.QuadEmitter;
 import net.fabricmc.fabric.api.renderer.v1.model.FabricBakedModel;
+import net.fabricmc.fabric.api.renderer.v1.model.ModelHelper;
 import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
+import net.fabricmc.fabric.impl.client.indigo.renderer.IndigoRenderer;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.item.ItemModels;
@@ -11,12 +14,14 @@ import net.minecraft.client.render.model.*;
 import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.Sprite;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockRenderView;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import scriptshatter.callum.Callum;
 import scriptshatter.callum.armor.Cap_item;
@@ -29,6 +34,14 @@ import java.util.function.Supplier;
 public class Trans_cap_model implements FabricBakedModel, BakedModel{
 
     //Make a constructor that takes in item stack and generate model based on that
+    public Trans_cap_model(Identifier model){
+        this.template_model = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), model);
+    }
+
+    public Trans_cap_model(ItemStack itemStack, LivingEntity entity, @Nullable World world, int seed){
+        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+        this.template_model = itemRenderer.getModel(itemStack, world, entity, seed);
+    }
 
     @Override
     public boolean isVanillaAdapter() {
@@ -40,23 +53,28 @@ public class Trans_cap_model implements FabricBakedModel, BakedModel{
 
     }
 
-    private BakedModel template_model = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), Callum.identifier("item/callum_goggles_model"));
+    private final BakedModel template_model;
 
     @Override
     public void emitItemQuads(ItemStack stack, Supplier<Random> randomSupplier, RenderContext context) {
-        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        BakedModel bakedModel = itemRenderer.getModels().getModel(stack);
-        if(stack.getItem() instanceof Goggles){
-            bakedModel = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), Callum.identifier("item/callum_goggles_model"));
-        }
-        else if (stack.getItem() instanceof Cap_item){
-            bakedModel = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), Callum.identifier("armor/callum_pilot_model"));
-        }
+        QuadEmitter quadEmitter = context.getEmitter();
+        Random random = randomSupplier.get();
+        if(template_model != null){
+            for (int i = 0; i <= ModelHelper.NULL_FACE_ID; i++) {
+                final Direction cullFace = ModelHelper.faceFromIndex(i);
+                random.setSeed(42L);
+                final List<BakedQuad> quads = template_model.getQuads(null, cullFace, random);
+                final int count = quads.size();
+                if (count != 0) {
+                    for (final BakedQuad q : quads) {
+                        quadEmitter.fromVanilla(q, IndigoRenderer.MATERIAL_STANDARD, cullFace);
+                        quadEmitter.spriteColor(0, 0x80ffffff, 0x80ffffff, 0x80ffffff, 0x80ffffff);
+                        quadEmitter.emit();
 
-        context.getEmitter().spriteColor(0, 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff);
-        context.getEmitter().emit();
-        context.bakedModelConsumer().accept(bakedModel);
-        template_model = bakedModel;
+                    }
+                }
+            }
+        }
     }
 
     @Override

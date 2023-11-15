@@ -28,16 +28,14 @@ public class Goggles_render implements TrinketRenderer {
 
     @Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        BakedModel bakedModel;
-        bakedModel = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), Callum.identifier("item/callum_goggles_model"));
         if (contextModel instanceof BipedEntityModel<? extends LivingEntity> playerEntityModel) {
+            ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
             matrices.push();
             if(!entity.hasStackEquipped(EquipmentSlot.HEAD)){
                 matrices.scale(0.9f, 0.9f, 0.9f);
             }
             Trinket_model_provider.translateToHead(matrices, (BipedEntityModel<LivingEntity>) playerEntityModel, entity, headYaw, headPitch);
-            itemRenderer.renderItem(Upgrade_item.make_invis(stack, PowerHolderComponent.hasPower(entity, InvisEquipmentPower.class)), ModelTransformation.Mode.HEAD, false, matrices, vertexConsumers, light, LivingEntityRenderer.getOverlay(entity, 0), bakedModel);
+            Trinket_model_provider.render_invis_item(entity, matrices, stack, vertexConsumers, light, Callum.identifier("item/callum_goggles_model"), false, ModelTransformation.Mode.HEAD, itemRenderer, entity.world, 0);
             matrices.pop();
         }
     }
