@@ -1,5 +1,6 @@
 package scriptshatter.callum.items.upgradeableItems;
 
+import com.google.common.collect.Multimap;
 import dev.emi.trinkets.TrinketSlot;
 import dev.emi.trinkets.api.*;
 import io.github.apace100.apoli.component.PowerHolderComponent;
@@ -16,6 +17,8 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.client.render.block.entity.ChestBlockEntityRenderer;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.ItemStack;
@@ -68,57 +71,44 @@ public abstract class UpgradeableTrinket extends TrinketItem implements IUpgrade
     public void update_powers(ItemStack upgradeable) {
     }
 
-    // This adds and removes powers based on upgrades when you have the trinket on your person.
-    @Override
-    public void tick(ItemStack itemsStack, SlotReference slot, LivingEntity entity) {
-/*        if(being_worn){
-            ItemStack stack = slot.inventory().getStack(slot.index());
-            PowerHolderComponent holder = PowerHolderComponent.KEY.get(entity);
 
-            IUpgradeableItem.getUpgrades(stack).forEach((upgrade_slot, upgrade) -> {
-                if (upgrade.getItem() instanceof Upgrade_item badgeItem) {
-                    String upgradeGroup = badgeItem.upgrade_group != null ? badgeItem.upgrade_group : "wildcard";
-                    badgeItem.powers.forEach(powerID -> holder.addPower(PowerTypeRegistry.get(powerID), Callum.identifier("badge_type_" + upgradeGroup)));
-                }
-            });
-
-            HashMap<PowerType<?>, List<Identifier>> marked_powers = new HashMap<>();
-
-            holder.getPowerTypes(true).forEach(powerType -> {
-                List<Identifier> marked_sources = new LinkedList<>();
-                holder.getSources(powerType).forEach(identifier -> {
-                    if (Objects.equals(identifier.getNamespace(), "callum") && identifier.getPath().contains("badge_type_")){
-                        marked_sources.add(identifier);
-                    }
-                });
-
-                IUpgradeableItem.getUpgrades(stack).forEach((upgrade_slot, upgrade) -> {
-                    if (upgrade.getItem() instanceof Upgrade_item badgeItem) {
-                        String upgradeGroup = badgeItem.upgrade_group != null ? badgeItem.upgrade_group : "wildcard";
-                        marked_sources.remove(Callum.identifier("badge_type_" + upgradeGroup));
-                    }
-                });
-
-                if(!marked_sources.isEmpty()){
-                    marked_powers.put(powerType, marked_sources);
-                }
-            });
-
-            marked_powers.forEach((powerType, identifiers) -> {
-                identifiers.forEach(identifier -> holder.removePower(powerType, identifier));
-            });
-            holder.sync();
-        }*/
-    }
-
-    // Basically enables the tick function to run, since sometimes it would run one more time after you had taken it off.
-
-    // Removes the powers supplied by the trinkets upgrades when you de-equip it.
-    // Also it slaps trinkets in the face and tells it the item was de-equipped, since if you spastically took the trinket on and off before, the server would sometimes think you still had it equipped.
-
-
+    //Removes powers. This will also remove the item on unequip, since it was only running it on the client side at times.
     @Override
     public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        slot.inventory().setStack(slot.index(), ItemStack.EMPTY);
+        if(entity.world.isClient()){
+            Post_office.sync_trinkets(stack);
+        }
+        else{
+            PowerHolderComponent holder = PowerHolderComponent.KEY.get(entity);
+            IUpgradeableItem.getUpgrades(stack).forEach((slotNum, item) -> {
+                if(item.getItem() instanceof Upgrade_item upgradeItem){
+                    String source_string = upgradeItem.upgrade_group == null ? "wildcard" : upgradeItem.upgrade_group;
+                    Identifier source = Callum.identifier("badge_type_" + source_string);
+                    upgradeItem.powers.forEach(powerID -> {
+                        if(holder.hasPower(PowerTypeRegistry.get(powerID))){
+                            holder.removePower(PowerTypeRegistry.get(powerID), source);
+                        }
+                    });
+                }
+            });
+            slot.inventory().removeStack(slot.index());
+        }
+    }
+
+    @Override
+    public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
+        PowerHolderComponent holder = PowerHolderComponent.KEY.get(entity);
+        IUpgradeableItem.getUpgrades(stack).forEach((slotNum, item) -> {
+            if(item.getItem() instanceof Upgrade_item upgradeItem){
+                String source_string = upgradeItem.upgrade_group == null ? "wildcard" : upgradeItem.upgrade_group;
+                Identifier source = Callum.identifier("badge_type_" + source_string);
+                upgradeItem.powers.forEach(powerID -> {
+                    if(!holder.hasPower(PowerTypeRegistry.get(powerID))){
+                        holder.addPower(PowerTypeRegistry.get(powerID), source);
+                    }
+                });
+            }
+        });
+        return super.getModifiers(stack, slot, entity, uuid);
     }
 }
