@@ -1,0 +1,32 @@
+{
+  "double_jump": {
+    "subtitle": "sounds.callum.pin.double_jump",
+    "sounds": [
+      "callum:double_jump"
+    ]
+  },
+  "pin_off": {
+    "subtitle": "sounds.callum.callum_pilot.pin_off",
+    "sounds": [
+      "callum:take_pin_off"
+    ]
+  },
+  "pin_on": {
+    "subtitle": "sounds.callum.callum_pilot.pin_on",
+    "sounds": [
+      "callum:put_pin_on"
+    ]
+  },
+  "lens_on": {
+    "subtitle": "sounds.callum.callum_goggles.lens_on",
+    "sounds": [
+      "callum:pop_lens_in"
+    ]
+  },
+  "lens_off": {
+    "subtitle": "sounds.callum.callum_goggles.lens_off",
+    "sounds": [
+      "callum:pop_lens_out"
+    ]
+  }
+}

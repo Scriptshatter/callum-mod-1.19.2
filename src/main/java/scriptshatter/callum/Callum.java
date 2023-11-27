@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import scriptshatter.callum.items.ItemRegister;
 import scriptshatter.callum.networking.Post_office;
 import scriptshatter.callum.powers.CallumPowerFactory;
+import scriptshatter.callum.sound.CallumSounds;
 
 public class Callum implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -24,6 +25,7 @@ public class Callum implements ModInitializer {
 		ItemRegister.register_moditems();
 		Post_office.register_shitty_ass_mother_fucking_mail_C2S();
 		CallumPowerFactory.register();
+		CallumSounds.veg();
 		LOGGER.info("Hello Fabric world!");
 	}
 

@@ -1,5 +1,7 @@
 package scriptshatter.callum.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -15,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import scriptshatter.callum.items.upgradeableItems.AccessWiden;
 import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
 import scriptshatter.callum.networking.C2S_scroll_packet;
-
+@Environment(EnvType.CLIENT)
 @Mixin(CreativeInventoryScreen.class)
 public abstract class CreativeScreenMixin extends AbstractInventoryScreen<CreativeInventoryScreen.CreativeScreenHandler> implements AccessWiden {
 

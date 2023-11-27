@@ -1,0 +1,12 @@
+{
+  "powers": [
+    "callum:callum/crafting"
+  ],
+  "icon": {
+    "item": "callum:callum_pilot"
+  },
+  "order": 3,
+  "impact": 2,
+  "name": "Callum",
+  "description": "This class is exclusive to callum, ect, ect."
+}

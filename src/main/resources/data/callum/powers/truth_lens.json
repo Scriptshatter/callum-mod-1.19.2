@@ -1,0 +1,16 @@
+{
+  "type": "origins:multiple",
+  "see_invis_entities": {
+    "type": "callum:enable_invis_render"
+  },
+  "overlay": {
+    "type": "origins:overlay",
+    "texture": "minecraft:textures/misc/white.png",
+    "draw_mode": "texture",
+    "strength": 0.3,
+    "red": 0.04705882353,
+    "green": 0.9019607843,
+    "blue": 0.9490196078,
+    "draw_phase": "below_hud"
+  }
+}

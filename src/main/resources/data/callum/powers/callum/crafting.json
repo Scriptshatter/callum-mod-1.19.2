@@ -1,0 +1,22 @@
+{
+  "type": "origins:multiple",
+  "starting_items": {
+    "type": "origins:starting_equipment",
+    "stacks": [
+      {
+        "item": "callum:callum_pilot"
+      },
+      {
+        "item": "callum:star_pin"
+      },
+      {
+        "item": "callum:bone_pin"
+      },
+      {
+        "item": "callum:cloud_pin"
+      }
+    ]
+  },
+  "name": "temp",
+  "description": "This description is only here cause I said so."
+}

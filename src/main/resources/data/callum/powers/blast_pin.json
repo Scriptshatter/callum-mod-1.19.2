@@ -1,0 +1,19 @@
+{
+  "type": "origins:target_action_on_hit",
+  "entity_action": {
+    "type": "origins:and",
+    "actions": [
+      {
+        "type": "origins:explode",
+        "power": 5,
+        "destruction_type": "none",
+        "damage_self": false,
+        "create_fire": false
+      },
+      {
+        "type": "origins:set_on_fire",
+        "duration": 3
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+	"type": "origins:attacker_action_when_hit",
+   "entity_action": {
+      "type": "origins:damage",
+      "amount": 1.5,
+      "source": {
+         "name": "cactus",
+        "bypasses_armor": true
+      }
+    },
+	"cooldown": 0
+}

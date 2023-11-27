@@ -1,5 +1,7 @@
 package scriptshatter.callum.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.ParentElement;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -7,7 +9,7 @@ import net.minecraft.screen.slot.Slot;
 import org.spongepowered.asm.mixin.Mixin;
 import scriptshatter.callum.items.upgradeableItems.AccessWiden;
 import scriptshatter.callum.networking.C2S_scroll_packet;
-
+@Environment(EnvType.CLIENT)
 @Mixin(ParentElement.class)
 public interface ParentElementMixin extends Element, AccessWiden {
 

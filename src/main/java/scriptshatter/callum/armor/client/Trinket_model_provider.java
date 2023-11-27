@@ -1,6 +1,7 @@
 package scriptshatter.callum.armor.client;
 
 import io.github.apace100.apoli.component.PowerHolderComponent;
+import io.github.apace100.origins.origin.Origin;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -55,7 +56,8 @@ public class Trinket_model_provider implements ExtraModelProvider {
     }
 
     public static void render_invis_item(LivingEntity livingEntity,
-                                         MatrixStack matrices, ItemStack stack,
+                                         MatrixStack matrices,
+                                         ItemStack stack,
                                          VertexConsumerProvider vertexConsumerProvider,
                                          int light,
                                          @Nullable Identifier model_ID,
@@ -64,10 +66,10 @@ public class Trinket_model_provider implements ExtraModelProvider {
                                          ItemRenderer renderer,
                                          @Nullable World world,
                                          int item_seed){
-        Trans_cap_model model = new Trans_cap_model(stack, livingEntity, world, item_seed);
+        Trans_cap_model model = new Trans_cap_model(stack, livingEntity, world, item_seed, 0x80ffffff);
         if(PowerHolderComponent.hasPower(livingEntity, InvisEquipmentPower.class) && !model.isBuiltin()){
             if(model_ID != null){
-                model = new Trans_cap_model(model_ID);
+                model = new Trans_cap_model(model_ID, 0x80ffffff);
             }
             ThreadLocal<ItemRenderContext> fabric_contexts = ThreadLocal.withInitial(() -> new ItemRenderContext(renderer.colors));
             ItemRenderContext.VanillaQuadHandler fabric_vanillaHandler = new IndigoQuadHandler(renderer);
@@ -84,6 +86,7 @@ public class Trinket_model_provider implements ExtraModelProvider {
                 bakedModel = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), model_ID);
             }
             renderer.renderItem(stack, model_mode, lefty, matrices, vertexConsumerProvider, light, LivingEntityRenderer.getOverlay(livingEntity, 0), bakedModel);
+
         }
     }
 }

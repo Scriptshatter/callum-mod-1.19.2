@@ -1,0 +1,11 @@
+{
+  "powers": [
+  ],
+  "icon": {
+    "item": "dirt"
+  },
+  "order": 3,
+  "impact": 2,
+  "name": "fard",
+  "description": "fard"
+}

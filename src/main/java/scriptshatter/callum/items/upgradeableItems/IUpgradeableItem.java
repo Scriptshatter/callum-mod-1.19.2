@@ -295,6 +295,10 @@ public interface IUpgradeableItem {
 
     default void appendTheTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("item.minecraft.bundle.fullness", getUpgradeCount(stack), getUpgrade_cap()).formatted(Formatting.AQUA));
+        render_upgrade_tooltips(stack, world, tooltip, context);
+    }
+
+    default void render_upgrade_tooltips(ItemStack stack, World world, List<Text> tooltip, TooltipContext context){
         if(!IUpgradeableItem.getUpgrades(stack).isEmpty()){
             tooltip.add(Text.translatable("upgradeable.callum." + this.upgrade_type()).formatted(Formatting.GOLD));
             IUpgradeableItem.getUpgrades(stack).forEach((slot, upgrade) -> {
@@ -333,15 +337,15 @@ public interface IUpgradeableItem {
         }
     }
 
-    private void playRemoveOneSound(Entity entity) {
+    default void playRemoveOneSound(Entity entity) {
         entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
     }
 
-    private void playInsertSound(Entity entity) {
+    default void playInsertSound(Entity entity) {
         entity.playSound(SoundEvents.ITEM_BUNDLE_INSERT, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
     }
 
-    private void playDropContentsSound(Entity entity) {
+    default void playDropContentsSound(Entity entity) {
         entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
     }
 }

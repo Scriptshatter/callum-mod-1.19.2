@@ -4,3 +4,4 @@ accessible class net/minecraft/client/gui/screen/ingame/CreativeInventoryScreen$
 accessible field net/minecraft/client/gui/screen/ingame/CreativeInventoryScreen$CreativeSlot slot Lnet/minecraft/screen/slot/Slot;
 accessible field net/minecraft/client/render/item/ItemRenderer colors Lnet/minecraft/client/color/item/ItemColors;
 accessible method net/minecraft/client/render/entity/feature/ArmorFeatureRenderer getArmorTexture (Lnet/minecraft/item/ArmorItem;ZLjava/lang/String;)Lnet/minecraft/util/Identifier;
+accessible method net/minecraft/entity/LivingEntity jump ()V

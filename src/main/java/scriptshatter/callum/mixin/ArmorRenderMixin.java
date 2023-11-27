@@ -1,5 +1,7 @@
 package scriptshatter.callum.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
@@ -21,7 +23,7 @@ import scriptshatter.callum.Callum;
 import scriptshatter.callum.armor.Cap_item;
 import scriptshatter.callum.armor.client.Trinket_model_provider;
 import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
-
+@Environment(EnvType.CLIENT)
 @Mixin(ArmorFeatureRenderer.class)
 public abstract class ArmorRenderMixin<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
 

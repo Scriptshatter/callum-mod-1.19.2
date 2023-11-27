@@ -1,12 +1,17 @@
 package scriptshatter.callum.powers;
 
+import io.github.apace100.apoli.Apoli;
+import io.github.apace100.apoli.power.InvisibilityPower;
 import io.github.apace100.apoli.power.Power;
 import io.github.apace100.apoli.power.factory.PowerFactory;
 import io.github.apace100.apoli.power.factory.PowerFactorySupplier;
+import io.github.apace100.apoli.power.factory.action.ActionFactory;
 import io.github.apace100.apoli.registry.ApoliRegistries;
 import io.github.apace100.calio.data.SerializableData;
+import io.github.apace100.calio.data.SerializableDataTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.PickaxeItem;
@@ -107,13 +112,27 @@ public class CallumPowerFactory {
                                 }, state -> state.isIn(TagKey.of(Registry.BLOCK_KEY, new Identifier("c", "ores")))).addCondition(e -> e instanceof LivingEntity l && l.getMainHandStack().getItem() instanceof PickaxeItem)
         ));
         register(() -> Power.createSimpleFactory(InvisEquipmentPower::new, Callum.identifier("invis_armor")));
-    }
+        register(() -> Power.createSimpleFactory(WaterBreathingPower::new, Callum.identifier("water_breathing")));
+        register(() -> Power.createSimpleFactory(SprintPower::new, Callum.identifier("directional_sprinting")));
+        register(() -> Power.createSimpleFactory(NoInvisPower::new, Callum.identifier("enable_invis_render")));
 
+        register(new ActionFactory<>(Callum.identifier("jump"), new SerializableData(),
+                (data, entity) -> {
+                    if(entity instanceof LivingEntity livingEntity){
+                        livingEntity.jump();
+                    }
+                }));
+
+    }
     private static void register(io.github.apace100.apoli.power.factory.PowerFactory<?> powerFactory) {
         Registry.register(ApoliRegistries.POWER_FACTORY, powerFactory.getSerializerId(), powerFactory);
     }
 
     private static void register(PowerFactorySupplier<?> factorySupplier) {
         register(factorySupplier.createFactory());
+    }
+
+    private static void register(ActionFactory<Entity> actionFactory) {
+        Registry.register(ApoliRegistries.ENTITY_ACTION, actionFactory.getSerializerId(), actionFactory);
     }
 }

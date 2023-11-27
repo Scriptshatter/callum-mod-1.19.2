@@ -1,0 +1,17 @@
+{
+  "type": "origins:multiple",
+  "get_rid_of_old": {
+    "type": "callum:disable_power",
+    "power": "origins:invisibility",
+    "source": "origins:phantom"
+  },
+  "replace_with_new": {
+    "type": "origins:invisibility",
+    "render_armor": false,
+    "condition": {
+      "type": "origins:power_active",
+      "power": "origins:phantomize"
+    }
+  },
+  "hidden": true
+}

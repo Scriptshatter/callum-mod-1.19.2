@@ -25,14 +25,4 @@ public class C2S_grab_player {
             packetByteBuf.writeBoolean(false);
         }
     }
-
-    public static boolean has_invis_power(UUID uuid){
-        PacketByteBuf packetByteBuf = PacketByteBufs.create();
-
-        packetByteBuf.writeUuid(uuid);
-
-        ClientPlayNetworking.send(Post_office.GET_PLAYER, packetByteBuf);
-
-        return packetByteBuf.readBoolean();
-    }
 }

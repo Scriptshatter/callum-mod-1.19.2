@@ -1,6 +1,7 @@
 package scriptshatter.callum;
 
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
+import io.github.apace100.apoli.power.factory.action.EntityActions;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
@@ -13,6 +14,7 @@ import scriptshatter.callum.items.ItemRegister;
 import scriptshatter.callum.items.Upgrade_item;
 import scriptshatter.callum.items.upgradeableItems.IUpgradeableItem;
 import scriptshatter.callum.networking.Post_office;
+import scriptshatter.callum.sound.CallumSounds;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -25,7 +27,7 @@ public class CallumClient implements ClientModInitializer {
 
         ModelLoadingRegistry.INSTANCE.registerModelProvider(new Trinket_model_provider());
         Post_office.S2C();
-
+        CallumSounds.veg();
         ColorProviderRegistry.ITEM.register(((stack, tintIndex) -> {
             if(tintIndex != 1){
                 return -1;

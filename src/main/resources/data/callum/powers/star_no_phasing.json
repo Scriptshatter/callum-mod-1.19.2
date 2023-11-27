@@ -1,6 +1,5 @@
 {
   "type": "callum:disable_power",
   "power": "origins:phantomize",
-  "source": "origins:phantom",
-  "loading_priority": 9999
+  "source": "origins:phantom"
 }

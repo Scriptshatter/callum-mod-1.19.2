@@ -1,0 +1,20 @@
+{
+  "order": 1,
+  "origins": [
+    {
+      "condition": {
+        "type": "origins:nbt",
+        "nbt": "{UUID: [I; 790035572, -810269894, -1746749839, 1943834030]}"
+      },
+      "origins": [
+        "callum:callum"
+      ]
+    },
+    "callum:fard"
+  ],
+  "name": "Second Origin",
+  "missing_name": "None",
+  "hidden": true,
+  "auto_choose": true,
+  "missing_description": "You currently don't have a secondary origin selected."
+}

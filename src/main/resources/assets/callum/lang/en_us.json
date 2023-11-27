@@ -1,5 +1,10 @@
 {
   "item.callum.callum_pilot": "Callum's Cap",
+  "sounds.callum.callum_pilot.pin_on": "Pin stitched on",
+  "sounds.callum.callum_pilot.pin_off": "Pin ripped off",
+  "sounds.callum.pin.double_jump": "Jumped off cloud",
+  "sounds.callum.callum_goggles.lens_on": "Lens popped in",
+  "sounds.callum.callum_goggles.lens_off": "Lens popped out",
   "item.callum.callum_goggles": "Callum's Goggles",
   "item.callum.placeholder_pin": "Upgrade test",
   "upgradeable.callum.pin": "Equipped Pins:",
@@ -14,6 +19,7 @@
   "item.callum.blast_pin": "Blast Pin",
   "item.callum.magnet_pin": "Magnet Pin",
   "item.callum.prickly_pin": "Prickly Pin",
+  "item.callum.pin_base": "Empty Pin",
   "item.callum.bone_pin": "Bone Pin",
   "item.callum.lumberjack_pin": "Lumberjack Pin",
   "item.callum.dwarf_pin": "Dwarf Pin",
@@ -34,5 +40,18 @@
   "power.callum.star_no_phasing.name": "isBad",
   "power.callum.star_no_phasing.description": "Unfortunately, this pin prevents phantoms from phasing.",
   "power.callum.star_no_transparent.description": "Phantoms who wear this pin will no longer be see through!",
-  "power.callum.star_yes_sun.description": "Phantoms who wear this pin will no longer burn in the sun!"
+  "power.callum.star_yes_sun.description": "Phantoms who wear this pin will no longer burn in the sun!",
+  "power.callum.moon_armor.description": "Your armor looks transparent with this pin on! If you're a phantom, it'll also turn invisible with you!",
+  "power.callum.diving_water_breathing.description": "With this pin on, you can breath underwater!",
+  "power.callum.fins_swim_speed.description": "With this pin on, you swim faster underwater!",
+  "power.callum.cloud_double_jump.description": "You can jump a second time mid-air with this pin on!",
+  "power.callum.spring_wall_jump.description": "You can cling to and jump off walls with this pin on!",
+  "power.callum.magnet_pin.description": "With this pin on, items will come to you from a larger distance.",
+  "power.callum.cactus_pin.description": "Others will get pricked when they try to attack you when you have this pin on!",
+  "power.callum.draining_pin.description": "With this pin on, you will drain others HP upon hitting them! Higher hit combo means more lifesteal.",
+  "power.callum.speed_pin.description": "With this pin on, you can sprint in all directions!",
+  "power.callum.winter_pin.description": "When attacking enemies with this pin on, they'll start to freeze.",
+  "power.callum.truth_lens.description": "When wearing goggles with this lens, players or entities with invisibility become visible!",
+  "power.callum.shadow_lens.description": "This lens is currently unused and does not work, but when it's finished it'll allow you to see through the eyes of other entities shadows!",
+  "power.callum.blast_pin.description": "When attacking enemies with this pin on, they'll light on fire and explode! Fortunately, you, and the terrain are immune to these explosions"
 }

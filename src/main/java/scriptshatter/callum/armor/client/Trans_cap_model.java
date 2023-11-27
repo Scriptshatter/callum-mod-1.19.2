@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
 import net.fabricmc.fabric.impl.client.indigo.renderer.IndigoRenderer;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.BakedQuad;
@@ -15,6 +16,7 @@ import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -30,13 +32,15 @@ import java.util.function.Supplier;
 public class Trans_cap_model implements FabricBakedModel, BakedModel{
 
     //Make a constructor that takes in item stack and generate model based on that
-    public Trans_cap_model(Identifier model){
+    public Trans_cap_model(Identifier model, int alpha){
         this.template_model = BakedModelManagerHelper.getModel(MinecraftClient.getInstance().getBakedModelManager(), model);
+        this.alpha_value = alpha;
     }
 
-    public Trans_cap_model(ItemStack itemStack, LivingEntity entity, @Nullable World world, int seed){
+    public Trans_cap_model(ItemStack itemStack, LivingEntity entity, @Nullable World world, int seed, int alpha){
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
         this.template_model = itemRenderer.getModel(itemStack, world, entity, seed);
+        this.alpha_value = alpha;
     }
 
     @Override
@@ -50,21 +54,26 @@ public class Trans_cap_model implements FabricBakedModel, BakedModel{
     }
 
     public final BakedModel template_model;
+    public final int alpha_value;
 
     @Override
     public void emitItemQuads(ItemStack stack, Supplier<Random> randomSupplier, RenderContext context) {
         QuadEmitter quadEmitter = context.getEmitter();
         Random random = randomSupplier.get();
+        BlockState state = null;
+        if(stack.getItem() instanceof BlockItem blockItem){
+            state = blockItem.getBlock().getDefaultState();
+        }
         if(template_model != null){
             for (int i = 0; i <= ModelHelper.NULL_FACE_ID; i++) {
                 final Direction cullFace = ModelHelper.faceFromIndex(i);
                 random.setSeed(42L);
-                final List<BakedQuad> quads = template_model.getQuads(null, cullFace, random);
+                final List<BakedQuad> quads = template_model.getQuads(state, cullFace, random);
                 final int count = quads.size();
                 if (count != 0) {
                     for (final BakedQuad q : quads) {
                         quadEmitter.fromVanilla(q, IndigoRenderer.MATERIAL_STANDARD, cullFace);
-                        quadEmitter.spriteColor(0, 0x80ffffff, 0x80ffffff, 0x80ffffff, 0x80ffffff);
+                        quadEmitter.spriteColor(0, alpha_value, alpha_value, alpha_value, alpha_value);
                         quadEmitter.emit();
 
                     }

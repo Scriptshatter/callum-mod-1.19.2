@@ -1,5 +1,7 @@
 package scriptshatter.callum.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
 import org.spongepowered.asm.mixin.Final;
@@ -10,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import scriptshatter.callum.items.upgradeableItems.AccessWiden;
-
+@Environment(EnvType.CLIENT)
 @Mixin(Mouse.class)
 public abstract class MouseMixin {
 
