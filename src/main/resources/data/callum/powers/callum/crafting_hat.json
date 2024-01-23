@@ -1,0 +1,123 @@
+{
+  "type": "origins:multiple",
+  "hat": {
+    "type": "origins:recipe",
+    "recipe": {
+      "id": "callum:hat",
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "# #",
+        "# #"
+      ],
+      "key": {
+        "#": {
+          "item": "minecraft:leather"
+        }
+      },
+      "result": {
+        "item": "callum:callum_pilot"
+      }
+    }
+  },
+  "goggles": {
+    "type": "origins:recipe",
+    "recipe": {
+      "id": "callum:goggles",
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "# #",
+        "$@$"
+      ],
+      "key": {
+        "#": {
+          "item": "minecraft:leather"
+        },
+        "$": {
+          "item": "minecraft:glass"
+        },
+        "@": {
+          "item": "minecraft:coal_block"
+        }
+      },
+      "result": {
+        "item": "callum:callum_goggles"
+      }
+    }
+  },
+  "no_armor":{
+    "type": "origins:restrict_armor",
+    "head": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "item": "callum:callum_pilot"
+      },
+      "inverted": true
+    },
+    "chest": {
+      "type": "origins:constant",
+      "value": true
+    },
+    "legs": {
+      "type": "origins:constant",
+      "value": true
+    },
+    "feet": {
+      "type": "origins:constant",
+      "value": true
+    }
+  },
+  "name": "Equipment",
+  "description": "As a Tailor, you've fashioned your own equipment to use instead of armor!",
+  "badges": [
+    {
+      "type": "origins:crafting_recipe",
+      "sprite": "callum:textures/item/callum_pilot.png",
+      "recipe": {
+        "id": "callum:hat",
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "###",
+          "# #",
+          "# #"
+        ],
+        "key": {
+          "#": {
+            "item": "minecraft:leather"
+          }
+        },
+        "result": {
+          "item": "callum:callum_pilot"
+        }
+      }
+    },
+    {
+      "type": "origins:crafting_recipe",
+      "sprite": "callum:textures/item/callum_goggles.png",
+      "recipe": {
+        "id": "callum:goggles",
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "###",
+          "# #",
+          "$@$"
+        ],
+        "key": {
+          "#": {
+            "item": "minecraft:leather"
+          },
+          "$": {
+            "item": "minecraft:glass"
+          },
+          "@": {
+            "item": "minecraft:coal_block"
+          }
+        },
+        "result": {
+          "item": "callum:callum_goggles"
+        }
+      }
+    }
+  ]
+}

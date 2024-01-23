@@ -2,14 +2,14 @@
 	"schemaVersion": 1,
 	"id": "callum",
 	"version": "${version}",
-	"name": "callum",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "The Expert Tailor Origin",
+	"description": "If you like this mod, feel free to commission me by contacting me using my discord; scriptshatter",
 	"authors": [
-		"Me!"
+		"Scriptshatter"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Scriptshatter/callum-mod-1.19.2",
+		"issues": "https://github.com/Scriptshatter/callum-mod-1.19.2/issues"
 	},
 	"accessWidener" : "callum.accesswidener",
 	"license": "CC0-1.0",
@@ -33,7 +33,9 @@
 		"fabricloader": ">=0.14.23",
 		"minecraft": "~1.19.2",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"origins": "1.7.1",
+		"trinkets": "3.4.1"
 	},
 	"suggests": {
 		"another-mod": "*"

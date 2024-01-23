@@ -1,22 +1,8 @@
 {
-  "type": "origins:multiple",
-  "starting_items": {
-    "type": "origins:starting_equipment",
-    "stacks": [
-      {
-        "item": "callum:callum_pilot"
-      },
-      {
-        "item": "callum:star_pin"
-      },
-      {
-        "item": "callum:bone_pin"
-      },
-      {
-        "item": "callum:cloud_pin"
-      }
-    ]
+  "type": "origins:replace_loot_table",
+  "replace": {
+    "([a-z|0-9|\\-|_]).*:chests/(.*)": "callum:pin_table"
   },
-  "name": "temp",
-  "description": "This description is only here cause I said so."
+  "name": "Tailors Sense",
+  "description": "You seem to be able to find addons for your own clothing in random chests! Must be some sixth sense..."
 }

@@ -1,12 +1,13 @@
 {
   "powers": [
-    "callum:callum/crafting"
+    "callum:callum/crafting",
+    "callum:callum/crafting_hat"
   ],
   "icon": {
     "item": "callum:callum_pilot"
   },
   "order": 3,
   "impact": 2,
-  "name": "Callum",
-  "description": "This class is exclusive to callum, ect, ect."
+  "name": "Expert Tailor",
+  "description": "Because of how much this adds, it's an origin instead of a class. With this origin you can add special pins to a special hat you can make to get special abilities. You get the special pins by looking in chests."
 }

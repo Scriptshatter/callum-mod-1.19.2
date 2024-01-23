@@ -1,0 +1,79 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "apoli:replaced_loot_table"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 0,
+        "max": 1
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 7,
+          "name": "minecraft:air"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:fins_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:diving_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:speed_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:cloud_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:kickoff_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:winter_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:blast_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:magnet_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:prickly_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:bone_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:lumberjack_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:dwarf_pin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "callum:truth_lens"
+        }
+      ]
+    }
+  ]
+}
